@@ -49,6 +49,12 @@ script = ExtResource("3_eqhgc")
 position = Vector2(28.7805, 38.4284)
 texture = ExtResource("4_lk07u")
 
+[node name="Line2D" type="Line2D" parent="hook_bg"]
+position = Vector2(-0.805401, -33.3372)
+points = PackedVector2Array(0.81, -27.091, 0.81, 30.909)
+width = 1.0
+default_color = Color(0.376471, 0.376471, 0.376471, 1)
+
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 10.0
 offset_top = 32.0
@@ -57,12 +63,6 @@ offset_bottom = 58.0
 texture_normal = ExtResource("1_bcaan")
 texture_hover = ExtResource("3_sxgsn")
 script = ExtResource("7_qyx4w")
-
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2(27.9751, 5.09116)
-points = PackedVector2Array(0.81, -27.091, 0.81, 30.909)
-width = 1.0
-default_color = Color(0.376471, 0.376471, 0.376471, 1)
 
 [node name="base_fish_bg3" type="Sprite2D" parent="."]
 position = Vector2(-4, 55)

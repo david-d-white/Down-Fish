@@ -5,7 +5,7 @@ signal pause_close
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var size = min(256, 128)
+	var size = min(512, 256)
 	var screen_size = min(DisplayServer.screen_get_size()[0], DisplayServer.screen_get_size()[1])
 	var window_size = int((64 / float(size)) * screen_size)
 	#print(window_size)
