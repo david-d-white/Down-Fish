@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvs58kdmkdxbk"]
+
+[ext_resource type="Script" path="res://Boat.gd" id="1_vnfdw"]
+[ext_resource type="Texture2D" path="res://hook.png" id="2_parsw"]
+[ext_resource type="Script" path="res://hook.gd" id="3_mdekh"]
+[ext_resource type="Script" path="res://line.gd" id="4_63rrt"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_blg32"]
+size = Vector2(32, 32)
+
+[node name="boat" type="Node2D"]
+
+[node name="Boat" type="Sprite2D" parent="."]
+position = Vector2(18, 16)
+texture = SubResource("PlaceholderTexture2D_blg32")
+script = ExtResource("1_vnfdw")
+
+[node name="hook" type="Sprite2D" parent="Boat"]
+position = Vector2(-10, 72)
+texture = ExtResource("2_parsw")
+script = ExtResource("3_mdekh")
+
+[node name="line" type="Line2D" parent="Boat/hook"]
+position = Vector2(-0.805405, -32.3372)
+points = PackedVector2Array(0.810043, -27.091, 0.81, 30.909)
+width = 1.0
+default_color = Color(0.376471, 0.376471, 0.376471, 1)
+script = ExtResource("4_63rrt")
+
+[connection signal="move_camera_vert" from="Boat/hook" to="Boat/hook/line" method="_on_hook_move_camera_vert"]
