@@ -1,5 +1,4 @@
 extends Sprite2D
-signal move_camera_vert(amount)
 var speed = 0.5
 
 # Called when the node enters the scene tree for the first time.
@@ -14,4 +13,4 @@ func _process(delta):
 		position[1] -= speed;
 	if Input.is_action_pressed("reel_up"):
 		position[1] += speed;
-	move_camera_vert.emit(position[1] - old_position[1])
+	get_parent().get_parent().move_camera_vert.emit(position[1] - old_position[1])

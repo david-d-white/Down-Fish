@@ -1,15 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctopoumgyqeey"]
+[gd_scene load_steps=5 format=3 uid="uid://ctopoumgyqeey"]
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_jhc88"]
 [ext_resource type="Script" path="res://assets/scripts/camera/main_camera.gd" id="2_0l0nl"]
-[ext_resource type="Script" path="res://assets/scripts/player/Boat.gd" id="3_he1q3"]
-[ext_resource type="Texture2D" uid="uid://c7f12mx3ym1lh" path="res://assets/sprites/hook.png" id="4_jv4dj"]
-[ext_resource type="Script" path="res://assets/scripts/player/hook.gd" id="5_srpvc"]
-[ext_resource type="Script" path="res://assets/scripts/player/line.gd" id="6_ltbkp"]
+[ext_resource type="PackedScene" uid="uid://cvs58kdmkdxbk" path="res://assets/scenes/boat.tscn" id="3_w5t17"]
 [ext_resource type="Script" path="res://assets/scripts/ui/pause.gd" id="7_jk3rh"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0ccfh"]
-size = Vector2(32, 32)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_jhc88")
@@ -57,22 +51,8 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(32, 32)
 script = ExtResource("2_0l0nl")
 
-[node name="Boat" type="Sprite2D" parent="."]
-position = Vector2(250, 120)
-texture = SubResource("PlaceholderTexture2D_0ccfh")
-script = ExtResource("3_he1q3")
-
-[node name="hook" type="Sprite2D" parent="Boat"]
-position = Vector2(-10, 72)
-texture = ExtResource("4_jv4dj")
-script = ExtResource("5_srpvc")
-
-[node name="line" type="Line2D" parent="Boat/hook"]
-position = Vector2(-0.805405, -32.3372)
-points = PackedVector2Array(0.810043, -27.091, 0.81, 30.909)
-width = 1.0
-default_color = Color(0.376471, 0.376471, 0.376471, 1)
-script = ExtResource("6_ltbkp")
+[node name="boat" parent="." instance=ExtResource("3_w5t17")]
+position = Vector2(249, 113)
 
 [node name="pause_bg" type="ColorRect" parent="."]
 visible = false
@@ -98,6 +78,5 @@ color = Color(0.211765, 0.211765, 0.211765, 1)
 
 [connection signal="pause_close" from="Camera2D" to="pause_bg" method="_on_camera_2d_pause_close"]
 [connection signal="pause_open" from="Camera2D" to="pause_bg" method="_on_camera_2d_pause_open"]
-[connection signal="move_camera_horiz" from="Boat" to="Camera2D" method="_on_boat_move_camera_horiz"]
-[connection signal="move_camera_vert" from="Boat/hook" to="Camera2D" method="_on_hook_move_camera_vert"]
-[connection signal="move_camera_vert" from="Boat/hook" to="Boat/hook/line" method="_on_hook_move_camera_vert"]
+[connection signal="move_camera_horiz" from="boat" to="Camera2D" method="_on_boat_move_camera_horiz"]
+[connection signal="move_camera_vert" from="boat" to="Camera2D" method="_on_boat_move_camera_vert"]

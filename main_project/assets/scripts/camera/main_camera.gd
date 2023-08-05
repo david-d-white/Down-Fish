@@ -30,6 +30,5 @@ func _process(delta):
 func _on_boat_move_camera_horiz(amount):
 	camera_offset[0] += amount
 
-
-func _on_hook_move_camera_vert(amount):
+func _on_boat_move_camera_vert(amount):
 	camera_offset[1] += amount

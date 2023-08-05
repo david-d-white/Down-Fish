@@ -1,6 +1,6 @@
 extends Sprite2D
 var speed = 0.1
-signal move_camera_horiz(amount)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,4 +14,4 @@ func _process(delta):
 		position[0] -= speed;
 	if Input.is_action_pressed("row_right"):
 		position[0] += speed;
-	move_camera_horiz.emit(position[0] - old_position[0])
+	get_parent().move_camera_horiz.emit(position[0] - old_position[0])

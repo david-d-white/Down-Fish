@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://83vb7730tfe"]
+
+[node name="base_fish" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]

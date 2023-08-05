@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvs58kdmkdxbk"]
+
+[ext_resource type="Script" path="res://assets/scripts/boat_scene.gd" id="1_35tkh"]
+[ext_resource type="Texture2D" uid="uid://c7f12mx3ym1lh" path="res://assets/sprites/hook.png" id="3_6mov8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_blg32"]
+size = Vector2(32, 32)
+
+[sub_resource type="GDScript" id="GDScript_im41b"]
+script/source = "extends Sprite2D
+var speed = 0.1
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var old_position = position
+	if Input.is_action_pressed(\"row_left\"):
+		position[0] -= speed;
+	if Input.is_action_pressed(\"row_right\"):
+		position[0] += speed;
+	get_parent().move_camera_horiz.emit(position[0] - old_position[0])
+"
+
+[sub_resource type="GDScript" id="GDScript_orrw3"]
+script/source = "extends Sprite2D
+var speed = 0.5
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var old_position = position
+	if Input.is_action_pressed(\"reel_down\"):
+		position[1] -= speed;
+	if Input.is_action_pressed(\"reel_up\"):
+		position[1] += speed;
+	get_parent().get_parent().move_camera_vert.emit(position[1] - old_position[1])
+"
+
+[sub_resource type="GDScript" id="GDScript_s5cp1"]
+script/source = "extends Line2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_boat_move_camera_vert(amount):
+	points[0] -= Vector2(0, amount)
+"
+
+[node name="boat" type="Node2D"]
+script = ExtResource("1_35tkh")
+
+[node name="Boat" type="Sprite2D" parent="."]
+position = Vector2(18, 16)
+texture = SubResource("PlaceholderTexture2D_blg32")
+script = SubResource("GDScript_im41b")
+
+[node name="hook" type="Sprite2D" parent="Boat"]
+position = Vector2(-9, 66)
+texture = ExtResource("3_6mov8")
+script = SubResource("GDScript_orrw3")
+
+[node name="line" type="Line2D" parent="Boat/hook"]
+position = Vector2(-0.805405, -32.3372)
+points = PackedVector2Array(0.810043, -27.091, 0.810013, 30.909)
+width = 1.0
+default_color = Color(0.376471, 0.376471, 0.376471, 1)
+script = SubResource("GDScript_s5cp1")
+
+[connection signal="move_camera_vert" from="." to="Boat/hook/line" method="_on_boat_move_camera_vert"]

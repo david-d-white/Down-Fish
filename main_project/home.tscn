@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://d4gjr8nbgncuh"]
+
+[ext_resource type="Texture2D" path="res://begin.png" id="1_bcaan"]
+[ext_resource type="Script" path="res://home.gd" id="1_j51am"]
+[ext_resource type="Texture2D" path="res://base_fish.png" id="2_ry0ne"]
+[ext_resource type="Texture2D" path="res://bubble.png" id="2_tuihs"]
+[ext_resource type="Script" path="res://base_fish_bg.gd" id="3_eqhgc"]
+[ext_resource type="Texture2D" path="res://begin_white.png" id="3_sxgsn"]
+[ext_resource type="Texture2D" path="res://hook.png" id="4_lk07u"]
+[ext_resource type="Script" path="res://BeginButton.gd" id="7_qyx4w"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_j51am")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(32, 32)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.454902, 0.733333, 0.984314, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(31, 64)
+amount = 3
+lifetime = 3.0
+preprocess = 5.0
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("2_tuihs")
+emission_shape = 3
+emission_rect_extents = Vector2(32, 1)
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, -25)
+initial_velocity_max = 12.0
+
+[node name="base_fish_bg2" type="Sprite2D" parent="."]
+position = Vector2(69, 24)
+texture = ExtResource("2_ry0ne")
+flip_h = true
+hframes = 2
+frame = 1
+script = ExtResource("3_eqhgc")
+
+[node name="hook_bg" type="Sprite2D" parent="."]
+position = Vector2(28.7805, 38.4284)
+texture = ExtResource("4_lk07u")
+
+[node name="Line2D" type="Line2D" parent="hook_bg"]
+position = Vector2(-0.805401, -33.3372)
+points = PackedVector2Array(0.81, -27.091, 0.81, 30.909)
+width = 1.0
+default_color = Color(0.376471, 0.376471, 0.376471, 1)
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 10.0
+offset_top = 32.0
+offset_right = 53.0
+offset_bottom = 58.0
+texture_normal = ExtResource("1_bcaan")
+texture_hover = ExtResource("3_sxgsn")
+script = ExtResource("7_qyx4w")
+
+[node name="base_fish_bg3" type="Sprite2D" parent="."]
+position = Vector2(-4, 55)
+texture = ExtResource("2_ry0ne")
+hframes = 2
+frame = 1
+script = ExtResource("3_eqhgc")
+
+[node name="base_fish_bg" type="Sprite2D" parent="."]
+position = Vector2(-4.83693, 11.9748)
+texture = ExtResource("2_ry0ne")
+hframes = 2
+frame = 1
+script = ExtResource("3_eqhgc")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
