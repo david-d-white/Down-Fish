@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfy6ow2tvfiol"
-path="res://.godot/imported/bubble.png-3dc4d46c6bed7b70ac6f4b3bfb630a9b.ctex"
+uid="uid://c7f12mx3ym1lh"
+path="res://.godot/imported/hook.png-f48a73a3018feeae7c8763f0a4929eb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bubble.png"
-dest_files=["res://.godot/imported/bubble.png-3dc4d46c6bed7b70ac6f4b3bfb630a9b.ctex"]
+source_file="res://assets/sprites/hook.png"
+dest_files=["res://.godot/imported/hook.png-f48a73a3018feeae7c8763f0a4929eb9.ctex"]
 
 [params]
 
