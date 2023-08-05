@@ -16,15 +16,15 @@ func _process(delta):
 	#print(DisplayServer.screen_get_usable_rect())
 	#+
 	
-	print(DisplayServer.window_get_size_with_decorations())
-	print(DisplayServer.screen_get_usable_rect().size)
-	print(window_position)
+	#print(DisplayServer.window_get_size_with_decorations())
+	#print(DisplayServer.screen_get_usable_rect().size)
+	#print(window_position)
 	position = Vector2(int(window_position[0]*(512.0-32)/screen_size[0]), int(window_position[1]*(256.0-32)/screen_size[1]))+Vector2(32, 32) + camera_offset
 	if Input.is_action_pressed("esc"):
 		pause_open.emit(position)
 	if Input.is_action_pressed("click"):
 		pause_close.emit()
-	print(position)
+	#print(position)
 
 
 func _on_boat_move_camera_horiz(amount):

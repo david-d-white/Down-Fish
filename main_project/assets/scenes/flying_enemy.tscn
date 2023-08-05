@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://csfjpgpia6huo"]
+
+[ext_resource type="Texture2D" uid="uid://lfxig6053i8e" path="res://assets/sprites/entities/Manta.png" id="1_8ubj3"]
+[ext_resource type="Script" path="res://assets/scripts/entities/flying_enemy.gd" id="1_gidyt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ykk5"]
+atlas = ExtResource("1_8ubj3")
+region = Rect2(0, 0, 25, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tcv0"]
+atlas = ExtResource("1_8ubj3")
+region = Rect2(25, 0, 25, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tkjan"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ykk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tcv0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y1q8y"]
+radius = 3.5
+height = 19.0
+
+[node name="flying_enemy" type="CharacterBody2D"]
+script = ExtResource("1_gidyt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tkjan")
+frame_progress = 0.616484
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -2.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_y1q8y")

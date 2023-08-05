@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1wqjpkaur4kv"]
+
+[ext_resource type="Script" path="res://assets/scripts/enemy_spawner.gd" id="1_67avw"]
+[ext_resource type="PackedScene" uid="uid://csfjpgpia6huo" path="res://assets/scenes/flying_enemy.tscn" id="2_lwol1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q571k"]
+size = Vector2(576, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ranqq"]
+size = Vector2(512, 256)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c0g4r"]
+radius = 64.0
+
+[node name="enemy_spawner" type="Marker2D"]
+gizmo_extents = 0.0
+script = ExtResource("1_67avw")
+enemy_scene = ExtResource("2_lwol1")
+
+[node name="spawn_max" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawn_max"]
+shape = SubResource("RectangleShape2D_q571k")
+debug_color = Color(0, 0.65098, 0.0980392, 0.419608)
+
+[node name="spawn_min" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawn_min"]
+shape = SubResource("RectangleShape2D_ranqq")
+debug_color = Color(0.678431, 0.505882, 0, 0.419608)
+
+[node name="warning_area" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="warning_area"]
+shape = SubResource("CircleShape2D_c0g4r")
+debug_color = Color(0.980392, 0.137255, 0, 0.419608)
