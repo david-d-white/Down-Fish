@@ -26,7 +26,12 @@ func _ready():
 	var window_width = int(min(play_area.size.x/SIZE_WINDOWS.x, play_area.size.y/SIZE_WINDOWS.y))
 	window_width -= window_width%RESOLUTION # Ensure window is a multiple of 64 pixels to keep pixel art compatible
 	window_size = Vector2i(window_width, window_width)
+	
 	DisplayServer.window_set_size(window_size)
+	
+	# Calculate Window Decoration height
+	var decorations = DisplayServer.window_get_size_with_decorations() - DisplayServer.window_get_size()
+	print(window_size, DisplayServer.window_get_size(), DisplayServer.window_get_size_with_decorations(), decorations)
 	
 	# Calculate playable area
 	var play_size = Vector2i(SIZE_WINDOWS*window_width)
