@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfjjv4863en5j"]
+[gd_scene load_steps=6 format=3 uid="uid://dfjjv4863en5j"]
 
+[ext_resource type="Texture2D" uid="uid://bc3lcfbeweisb" path="res://assets/sprites/Map.png" id="1_pm5sb"]
 [ext_resource type="Script" path="res://assets/scripts/camera/main_camera.gd" id="2_0l0nl"]
-[ext_resource type="PackedScene" uid="uid://bm2faf3w46v44" path="res://assets/scenes/island.tscn" id="2_sqt6n"]
+[ext_resource type="PackedScene" uid="uid://desi8ybn0ysg3" path="res://assets/scenes/island.tscn" id="2_sqt6n"]
 [ext_resource type="PackedScene" uid="uid://cvs58kdmkdxbk" path="res://assets/scenes/boat.tscn" id="3_w5t17"]
 [ext_resource type="Script" path="res://assets/scripts/ui/pause.gd" id="7_jk3rh"]
 
 [node name="main" type="Node2D"]
 
+[node name="Map" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("1_pm5sb")
+
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
+visible = false
 position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="LimRight" type="ColorRect" parent="CanvasGroup"]
@@ -49,6 +55,7 @@ color = Color(0, 0.847059, 0.745098, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Island" parent="." instance=ExtResource("2_sqt6n")]
+visible = false
 position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -56,7 +63,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("2_0l0nl")
 
 [node name="boat" parent="." instance=ExtResource("3_w5t17")]
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(2.08165e-12, -128)
 
 [node name="pause_bg" type="ColorRect" parent="."]
 visible = false
@@ -82,5 +89,3 @@ color = Color(0.211765, 0.211765, 0.211765, 1)
 
 [connection signal="pause_close" from="Camera2D" to="pause_bg" method="_on_camera_2d_pause_close"]
 [connection signal="pause_open" from="Camera2D" to="pause_bg" method="_on_camera_2d_pause_open"]
-[connection signal="move_camera_horiz" from="boat" to="Camera2D" method="_on_boat_move_camera_horiz"]
-[connection signal="move_camera_vert" from="boat" to="Camera2D" method="_on_boat_move_camera_vert"]

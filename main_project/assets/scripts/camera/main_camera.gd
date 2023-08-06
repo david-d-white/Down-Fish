@@ -5,7 +5,7 @@ var camera_offset = Vector2(0, 0)
 var paused = false
 
 const RESOLUTION:int = 64
-const SIZE_WINDOWS:Vector2 = Vector2(8,4)
+const SIZE_WINDOWS:Vector2 = Vector2(16,8)
 const SIZE_PIXELS = SIZE_WINDOWS*RESOLUTION
 const PARALLAX = 1
 
@@ -13,13 +13,13 @@ const PARALLAX = 1
 var window_size:Vector2i
 var pan_scale
 
-var window_positions = [Vector2i(0, 0), Vector2i(0,0), Vector2i(0,0)] # Hacky window position buffer to smooth rendering
+var BUFFER_SIZE = 2
+var window_positions = [] # Hacky window position buffer to smooth rendering
 var camera_disp # Camera displacement for window and camera position calculations
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	RenderingServer.connect("frame_pre_draw", self.update_camera_pos)
-	RenderingServer.connect("frame_post_draw", self.update_window_pos)
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_MAILBOX)
 	
 	# Scale Window size to based on monitor size and play area size.
 	# Use the minimum value to ensure enough playable area
@@ -34,6 +34,17 @@ func _ready():
 	
 	# Calculate scaling for camera panning
 	pan_scale = window_width/RESOLUTION
+	
+	RenderingServer.connect("frame_pre_draw", self.update_camera_pos)
+	RenderingServer.connect("frame_post_draw", self.update_window_pos)
+
+func _process(delta):
+	if Input.is_action_just_pressed("increase_camera_buffer"):
+		BUFFER_SIZE += 1
+		print(BUFFER_SIZE)
+	elif Input.is_action_just_pressed("decrease_camera_buffer"):
+		BUFFER_SIZE -= 1
+		print(BUFFER_SIZE)
 
 func update_camera_pos():
 	if not paused:	
@@ -61,8 +72,10 @@ func update_camera_pos():
 func update_window_pos():
 	if not paused:	
 		# ====== Set Window Position ====== #
-		DisplayServer.window_set_position(window_positions.pop_front())
 		window_positions.push_back(play_area.get_center() + Vector2i(camera_disp*pan_scale) - window_size/2)
+		while window_positions.size() > BUFFER_SIZE:
+			DisplayServer.window_set_position(window_positions.pop_front())
+
 
 func _on_boat_move_camera_horiz(amount):
 	camera_offset[0] += amount
