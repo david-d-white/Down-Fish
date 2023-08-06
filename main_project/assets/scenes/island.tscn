@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://bm2faf3w46v44"]
+
+[ext_resource type="Texture2D" uid="uid://cbgunq865ankb" path="res://assets/sprites/entities/Island_Hut.png" id="1_jllwp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db6os"]
+atlas = ExtResource("1_jllwp")
+region = Rect2(0, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27t1a"]
+atlas = ExtResource("1_jllwp")
+region = Rect2(55, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f6xv"]
+atlas = ExtResource("1_jllwp")
+region = Rect2(110, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e56ki"]
+atlas = ExtResource("1_jllwp")
+region = Rect2(165, 0, 55, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hxwg3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db6os")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27t1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f6xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e56ki")
+}],
+"loop": true,
+"name": &"Puff",
+"speed": 5.0
+}]
+
+[node name="Island" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-27, -54)
+sprite_frames = SubResource("SpriteFrames_hxwg3")
+animation = &"Puff"
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0.5, -27)
+polygon = PackedVector2Array(-28, 27, -23, 14, -10, 6, -8, 5, -8, -2, -4, -10, 6, -10, 9, -3, 9, 6, 14, 8, 23, 14, 28, 22, 28, 28, -28, 28)
