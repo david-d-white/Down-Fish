@@ -38,13 +38,12 @@ offset = Vector2(2.08165e-12, 2.08165e-12)
 flip_h = true
 
 [node name="hook_sprite" type="Sprite2D" parent="."]
-position = Vector2(0.5, -4)
+position = Vector2(2.08165e-12, -4)
 texture = ExtResource("3_6mov8")
 centered = false
-offset = Vector2(-3.5, 2.08165e-12)
+offset = Vector2(-3, 2.08165e-12)
 region_enabled = true
 region_rect = Rect2(2, 4, 4, 6)
-metadata/_edit_group_ = true
 
 [node name="line" type="Line2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)

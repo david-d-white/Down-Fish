@@ -13,6 +13,9 @@ const HOOK_LIM:float = -4
 @onready var buffered_hook_pos:float = $hook_sprite.position.y
 var boat_speed:float = 0
 
+# ====== SIGNALS ====== #
+signal hook_move_notify(newpos)
+
 func _process(delta):
 	# ====== Boat Controls and Rendering ====== #
 	if Input.is_action_pressed("row_left"):
@@ -43,6 +46,7 @@ func _process(delta):
 		
 	$hook_sprite.position.y = round(buffered_hook_pos)
 	$line.points[1].y = $hook_sprite.position.y
+	emit_signal("hook_move_notify", $hook_sprite.global_position)
 	
 	if $hook_sprite.position.y > HOOK_LIM:
 		$hook_sprite.show()
