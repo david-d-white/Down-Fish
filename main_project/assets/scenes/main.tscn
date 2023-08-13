@@ -1,64 +1,35 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfjjv4863en5j"]
+[gd_scene load_steps=7 format=3 uid="uid://dfjjv4863en5j"]
 
 [ext_resource type="Script" path="res://assets/scripts/camera/main_camera.gd" id="2_0l0nl"]
-[ext_resource type="PackedScene" uid="uid://7sninxcxu5e" path="res://assets/scenes/island.tscn" id="2_sqt6n"]
+[ext_resource type="PackedScene" uid="uid://desi8ybn0ysg3" path="res://assets/scenes/island.tscn" id="2_sqt6n"]
 [ext_resource type="PackedScene" uid="uid://cvs58kdmkdxbk" path="res://assets/scenes/boat.tscn" id="3_w5t17"]
 [ext_resource type="Texture2D" uid="uid://bjp31ob7ynuu0" path="res://assets/sprites/Map 3.png" id="5_pdj6t"]
 [ext_resource type="PackedScene" uid="uid://d1i1d6wru0mcd" path="res://assets/scenes/fish_spawner.tscn" id="6_wfr3f"]
 [ext_resource type="PackedScene" uid="uid://d1wqjpkaur4kv" path="res://assets/scenes/enemy_spawner.tscn" id="6_g1mpo"]
-[ext_resource type="Script" path="res://assets/scripts/ui/pause.gd" id="7_jk3rh"]
+
 
 [node name="main" type="Node2D"]
 
-[node name="Map3" type="Sprite2D" parent="."]
+[node name="Map" type="Sprite2D" parent="."]
 position = Vector2(64, 32)
 texture = ExtResource("5_pdj6t")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
-visible = false
-position = Vector2(2.08165e-12, 2.08165e-12)
-
-[node name="LimRight" type="ColorRect" parent="CanvasGroup"]
-anchors_preset = -1
-anchor_top = -0.0078125
-anchor_bottom = -0.0078125
-offset_left = 253.0
-offset_top = -126.0
-offset_right = 765.0
-offset_bottom = 130.0
-color = Color(0.152941, 0.831373, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="LimLeft" type="ColorRect" parent="CanvasGroup"]
-offset_left = -767.0
-offset_top = -128.0
-offset_right = -255.0
-offset_bottom = 128.0
-color = Color(0.152941, 0.831373, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="Water" type="ColorRect" parent="CanvasGroup"]
-anchors_preset = -1
-anchor_left = -4.01172
-anchor_top = 0.964844
-anchor_right = -1.96875
-anchor_bottom = 0.964844
-offset_left = -256.0
-offset_right = 256.0
-offset_bottom = 512.0
-color = Color(0.0627451, 0.192157, 0.603922, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="Sky" type="ColorRect" parent="CanvasGroup"]
-offset_left = -256.0
-offset_top = -128.0
-offset_right = 256.0
-color = Color(0, 0.847059, 0.745098, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="Island" parent="." instance=ExtResource("2_sqt6n")]
-visible = false
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(-373, -108)
+
+[node name="enemy_spawner" parent="Island" instance=ExtResource("6_g1mpo")]
+
+[node name="CollisionShape2D" parent="Island/enemy_spawner/spawn_max" index="0"]
+position = Vector2(452.5, -73.5)
+
+[node name="CollisionShape2D" parent="Island/enemy_spawner/spawn_min" index="0"]
+position = Vector2(437, -56.5)
+
+[node name="boat" parent="." instance=ExtResource("3_w5t17")]
+position = Vector2(-325, -106)
+
+[node name="fish_spawner" parent="." instance=ExtResource("6_wfr3f")]
+position = Vector2(61, 28)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("boat")]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -67,20 +38,31 @@ SOUTH_LIM = 64
 EAST_LIM = 128
 boat = NodePath("../boat")
 
-[node name="boat" parent="." instance=ExtResource("3_w5t17")]
-position = Vector2(-325, -106)
-
-[node name="fish_spawner" parent="." instance=ExtResource("6_wfr3f")]
-position = Vector2(61, 28)
-
-[node name="pause_bg" type="ColorRect" parent="."]
+[node name="pause_bg" type="ColorRect" parent="Camera2D"]
 visible = false
-offset_right = 64.0
-offset_bottom = 64.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.493545, 0.493546, 0.493546, 0.501961)
-script = ExtResource("7_jk3rh")
 
-[node name="ColorRect" type="ColorRect" parent="pause_bg"]
+
+[node name="ColorRect2" type="ColorRect" parent="Camera2D/pause_bg"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 25.0
+offset_right = 38.0
+offset_bottom = 40.0
+color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/pause_bg"]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 25.0
@@ -88,25 +70,7 @@ offset_right = 30.0
 offset_bottom = 40.0
 color = Color(0.211765, 0.211765, 0.211765, 1)
 
-[node name="ColorRect" type="ColorRect" parent="pause_bg/ColorRect"]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 12.0
-offset_bottom = 15.0
-color = Color(0.211765, 0.211765, 0.211765, 1)
+[connection signal="pause_close" from="Camera2D" to="Camera2D/pause_bg" method="_on_camera_2d_pause_close"]
+[connection signal="pause_open" from="Camera2D" to="Camera2D/pause_bg" method="_on_camera_2d_pause_open"]
 
-[node name="Island2" parent="." instance=ExtResource("2_sqt6n")]
-position = Vector2(-373, -108)
-
-[node name="enemy_spawner" parent="Island2" instance=ExtResource("6_g1mpo")]
-
-[node name="CollisionShape2D" parent="Island2/enemy_spawner/spawn_max" index="0"]
-position = Vector2(452.5, -73.5)
-
-[node name="CollisionShape2D" parent="Island2/enemy_spawner/spawn_min" index="0"]
-position = Vector2(437, -56.5)
-
-[connection signal="pause_close" from="Camera2D" to="pause_bg" method="_on_camera_2d_pause_close"]
-[connection signal="pause_open" from="Camera2D" to="pause_bg" method="_on_camera_2d_pause_open"]
-
-[editable path="Island2/enemy_spawner"]
+[editable path="Island/enemy_spawner"]

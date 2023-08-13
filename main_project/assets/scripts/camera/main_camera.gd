@@ -77,12 +77,17 @@ func _ready():
 	# Calculate scaling for camera panning
 	pan_scale = window_width/RESOLUTION
 	
-	# Center mouse on boat for clarity
-	DisplayServer.window_set_position(play_area.get_center() + Vector2i(boat.global_position*pan_scale))
-	DisplayServer.window_set_size(window_size)
-	get_viewport().warp_mouse(Vector2(0,0))
-	DisplayServer.window_set_position(play_area.get_center() + Vector2i(boat.global_position*pan_scale) - window_size/2)
+	# Calculate Desired mouse position in old viewport size
+	var old_size = DisplayServer.window_get_size()
+	var scaling = Vector2(window_width as float/old_size.x, window_width as float/old_size.y)
+	var center_pos = scaling*RESOLUTION/2.0
 	
+	# Center Window and Mouse around Initial Player Location
+	DisplayServer.window_set_position(play_area.get_center() + Vector2i(boat.global_position*pan_scale) - window_size/2)
+	DisplayServer.window_set_size(window_size)
+	get_viewport().warp_mouse(center_pos)
+	
+	# Signals for window and camera movement
 	RenderingServer.connect("frame_pre_draw", self._update_camera_pos)
 	RenderingServer.connect("frame_post_draw", self._update_window_pos)
 	boat.connect("hook_move_notify", self._update_camera_offset)
@@ -120,12 +125,11 @@ func _process(delta):
 		print(BUFFER_SIZE)
 	
 	if Input.is_action_pressed("esc"):
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-		pause_open.emit(position)
+		$pause_bg.visible = true
 		paused = true
 	elif Input.is_action_pressed("click"):
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CONFINED_HIDDEN)
-		pause_close.emit()
+		get_viewport().warp_mouse(Vector2(RESOLUTION/2, RESOLUTION/2)) # Warp Mouse to Window Center
+		$pause_bg.visible = false
 		paused = false
 
 func _update_camera_offset(offset):
