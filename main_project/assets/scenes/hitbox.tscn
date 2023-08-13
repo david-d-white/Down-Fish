@@ -7,3 +7,5 @@ script = ExtResource("1_d0nks")
 
 [node name="HitboxShape" type="CollisionShape2D" parent="."]
 debug_color = Color(0.92549, 0, 0, 0.356863)
+
+[connection signal="area_entered" from="." to="." method="_on_Hitbox_area_entered"]

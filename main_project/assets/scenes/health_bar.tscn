@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ddo1mns1w2y5e" path="res://assets/sprites/health_bar.tres" id="2_cm66v"]
 [ext_resource type="Script" path="res://assets/scripts/health_bar.gd" id="3_83d0s"]
 
-[node name="TextureProgressBar" type="TextureProgressBar"]
+[node name="HealthBar" type="TextureProgressBar"]
 offset_right = 5.0
 offset_bottom = 3.0
 max_value = 1.0
@@ -19,3 +19,5 @@ texture_under = ExtResource("1_djcmb")
 texture_progress = ExtResource("2_cm66v")
 texture_progress_offset = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("3_83d0s")
+
+[connection signal="resized" from="." to="." method="resize_healthbar"]

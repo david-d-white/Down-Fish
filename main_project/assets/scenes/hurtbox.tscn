@@ -9,3 +9,6 @@ script = ExtResource("1_fitg0")
 debug_color = Color(0, 0.639216, 0, 0.356863)
 
 [node name="Invincibility" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_ended"]

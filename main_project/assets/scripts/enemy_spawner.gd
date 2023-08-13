@@ -1,6 +1,6 @@
 extends Marker2D
 
-const SPAWN_TIME:float = 2.0
+@export var SPAWN_TIME:float = 5.0
 var time_accum:float = SPAWN_TIME
 
 @export var enemy_scene: PackedScene

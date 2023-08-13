@@ -11,11 +11,11 @@ signal invincibility_ended()
 
 func set_invincible (invincible : bool):
 	if invincible:
-		$CollisionShape2D.set_deferred("disabled", true)
+		$HurtboxShape.set_deferred("disabled", true)
 		emit_signal("invincibility_started")
 	else:
 		emit_signal("invincibility_ended")
-		$CollisionShape2D.set_deferred("disabled", false)
+		$HurtboxShape.set_deferred("disabled", false)
 	
 
 func damage(hitbox):

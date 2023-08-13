@@ -14,9 +14,10 @@ position = Vector2(64, 32)
 texture = ExtResource("5_pdj6t")
 
 [node name="Island" parent="." instance=ExtResource("2_sqt6n")]
-position = Vector2(-373, -108)
+position = Vector2(-379, -134)
 
 [node name="enemy_spawner" parent="Island" instance=ExtResource("6_g1mpo")]
+visible = false
 
 [node name="CollisionShape2D" parent="Island/enemy_spawner/spawn_max" index="0"]
 position = Vector2(452.5, -73.5)

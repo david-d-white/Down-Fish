@@ -1,59 +1,112 @@
-[gd_scene load_steps=8 format=3 uid="uid://csfjpgpia6huo"]
+[gd_scene load_steps=14 format=3 uid="uid://csfjpgpia6huo"]
 
-[ext_resource type="Texture2D" uid="uid://pnov2nqu8n51" path="res://assets/sprites/entities/Manta.png" id="1_8ubj3"]
 [ext_resource type="Script" path="res://assets/scripts/entities/flying_enemy.gd" id="1_gidyt"]
-[ext_resource type="PackedScene" path="res://assets/scenes/health_bar.tscn" id="3_n2u6f"]
+[ext_resource type="Texture2D" uid="uid://fv15fmfp4crp" path="res://assets/sprites/entities/Bird.png" id="3_bslsp"]
+[ext_resource type="PackedScene" uid="uid://dsich7kfwoftf" path="res://assets/scenes/health_bar.tscn" id="3_n2u6f"]
+[ext_resource type="PackedScene" uid="uid://bltrgfi1t86to" path="res://assets/scenes/hurtbox.tscn" id="4_oslgo"]
+[ext_resource type="PackedScene" uid="uid://bdqr4w83kdnk8" path="res://assets/scenes/hitbox.tscn" id="5_m2pdq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ykk5"]
-atlas = ExtResource("1_8ubj3")
-region = Rect2(0, 0, 25, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jtt8"]
+atlas = ExtResource("3_bslsp")
+region = Rect2(0, 0, 29, 17)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tcv0"]
-atlas = ExtResource("1_8ubj3")
-region = Rect2(25, 0, 25, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwdmo"]
+atlas = ExtResource("3_bslsp")
+region = Rect2(29, 0, 29, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e04l6"]
+atlas = ExtResource("3_bslsp")
+region = Rect2(58, 0, 29, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk7g7"]
+atlas = ExtResource("3_bslsp")
+region = Rect2(87, 0, 29, 17)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tkjan"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5ykk5")
+"texture": SubResource("AtlasTexture_5jtt8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2tcv0")
+"texture": SubResource("AtlasTexture_bwdmo")
 }],
 "loop": true,
-"name": &"default",
-"speed": 10.0
+"name": &"Fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e04l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nk7g7")
+}],
+"loop": true,
+"name": &"Peck",
+"speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8nt2v"]
+radius = 4.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56iul"]
+radius = 7.0
+height = 27.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y1q8y"]
 radius = 3.0
-height = 12.0
+height = 6.0
 
 [node name="flying_enemy" type="CharacterBody2D"]
 script = ExtResource("1_gidyt")
 
-[node name="Health Bar" parent="." instance=ExtResource("3_n2u6f")]
+[node name="HealthBar" parent="." instance=ExtResource("3_n2u6f")]
 anchors_preset = -1
 anchor_left = 0.602
 anchor_top = -0.208
 anchor_right = 0.602
 anchor_bottom = -0.208
-offset_left = -8.0
-offset_top = -10.0
-offset_right = 8.0
-offset_bottom = -7.0
-value = 0.9375
+offset_left = -4.0
+offset_top = -11.0
+offset_right = 4.0
+offset_bottom = -8.0
+value = 0.875
 max_health = 10
 current_health = 10
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(2.08165e-12, 2.08165e-12)
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 0)
 sprite_frames = SubResource("SpriteFrames_tkjan")
-frame_progress = 0.0962647
+animation = &"Fly"
+frame_progress = 0.925252
 offset = Vector2(-2.5, 2.08165e-12)
 
+[node name="Hitbox" parent="." instance=ExtResource("5_m2pdq")]
+position = Vector2(3.52843e-14, 1)
+rotation = 1.5708
+MASK = 4
+damage = 1
+
+[node name="HitboxShape" parent="Hitbox" index="0"]
+shape = SubResource("CapsuleShape2D_8nt2v")
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_oslgo")]
+visible = false
+position = Vector2(3.52843e-14, 1)
+rotation = 1.5708
+LAYER = 2
+
+[node name="HurtboxShape" parent="Hurtbox" index="0"]
+position = Vector2(-2.5, 0.5)
+shape = SubResource("CapsuleShape2D_56iul")
+
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, -2)
+visible = false
+position = Vector2(3.52843e-14, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_y1q8y")
+
+[editable path="Hitbox"]
+[editable path="Hurtbox"]
