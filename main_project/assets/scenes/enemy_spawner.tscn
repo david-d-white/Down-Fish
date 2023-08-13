@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://csfjpgpia6huo" path="res://assets/scenes/flying_enemy.tscn" id="2_lwol1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q571k"]
-size = Vector2(576, 320)
+size = Vector2(1055, 153)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ranqq"]
-size = Vector2(512, 256)
+size = Vector2(1024, 119)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c0g4r"]
 radius = 64.0

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctopoumgyqeey"]
+[gd_scene load_steps=8 format=3 uid="uid://dfjjv4863en5j"]
 
 [ext_resource type="Script" path="res://assets/scripts/camera/main_camera.gd" id="2_0l0nl"]
 [ext_resource type="PackedScene" uid="uid://7sninxcxu5e" path="res://assets/scenes/island.tscn" id="2_sqt6n"]
 [ext_resource type="PackedScene" uid="uid://cvs58kdmkdxbk" path="res://assets/scenes/boat.tscn" id="3_w5t17"]
 [ext_resource type="Texture2D" uid="uid://bjp31ob7ynuu0" path="res://assets/sprites/Map 3.png" id="5_pdj6t"]
 [ext_resource type="PackedScene" uid="uid://d1i1d6wru0mcd" path="res://assets/scenes/fish_spawner.tscn" id="6_wfr3f"]
+[ext_resource type="PackedScene" uid="uid://d1wqjpkaur4kv" path="res://assets/scenes/enemy_spawner.tscn" id="6_g1mpo"]
 [ext_resource type="Script" path="res://assets/scripts/ui/pause.gd" id="7_jk3rh"]
 
 [node name="main" type="Node2D"]
@@ -69,9 +70,6 @@ boat = NodePath("../boat")
 [node name="boat" parent="." instance=ExtResource("3_w5t17")]
 position = Vector2(-325, -106)
 
-[node name="Island2" parent="." instance=ExtResource("2_sqt6n")]
-position = Vector2(-373, -108)
-
 [node name="fish_spawner" parent="." instance=ExtResource("6_wfr3f")]
 position = Vector2(61, 28)
 
@@ -97,5 +95,18 @@ offset_right = 12.0
 offset_bottom = 15.0
 color = Color(0.211765, 0.211765, 0.211765, 1)
 
+[node name="Island2" parent="." instance=ExtResource("2_sqt6n")]
+position = Vector2(-373, -108)
+
+[node name="enemy_spawner" parent="Island2" instance=ExtResource("6_g1mpo")]
+
+[node name="CollisionShape2D" parent="Island2/enemy_spawner/spawn_max" index="0"]
+position = Vector2(452.5, -73.5)
+
+[node name="CollisionShape2D" parent="Island2/enemy_spawner/spawn_min" index="0"]
+position = Vector2(437, -56.5)
+
 [connection signal="pause_close" from="Camera2D" to="pause_bg" method="_on_camera_2d_pause_close"]
 [connection signal="pause_open" from="Camera2D" to="pause_bg" method="_on_camera_2d_pause_open"]
+
+[editable path="Island2/enemy_spawner"]

@@ -14,4 +14,7 @@ func _physics_process(delta):
 	var direction = position.direction_to(target)
 	velocity = direction*SPEED
 	move_and_slide()
-	print_debug("target:", self.target, "position:", self.position)
+	
+	$Sprite.flip_h = velocity.x < 0
+	
+	#print_debug("target:", self.target, "position:", self.position)
