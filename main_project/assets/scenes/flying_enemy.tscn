@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://csfjpgpia6huo"]
 
-[ext_resource type="Texture2D" uid="uid://lfxig6053i8e" path="res://assets/sprites/entities/Manta.png" id="1_8ubj3"]
+[ext_resource type="Texture2D" uid="uid://pnov2nqu8n51" path="res://assets/sprites/entities/Manta.png" id="1_8ubj3"]
 [ext_resource type="Script" path="res://assets/scripts/entities/flying_enemy.gd" id="1_gidyt"]
-[ext_resource type="PackedScene" uid="uid://dsich7kfwoftf" path="res://assets/scenes/health_bar.tscn" id="3_n2u6f"]
+[ext_resource type="PackedScene" path="res://assets/scenes/health_bar.tscn" id="3_n2u6f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ykk5"]
 atlas = ExtResource("1_8ubj3")

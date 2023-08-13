@@ -13,7 +13,7 @@ size = Vector2(583, 126)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxerc"]
 size = Vector2(253, 136)
 
-[node name="fish_spawner" type="Marker2D"]
+[node name="fish_spawner" type="Marker2D" groups=["fish_spawner"]]
 gizmo_extents = 0.0
 script = ExtResource("1_tjf73")
 fish_scene = ExtResource("2_gwfo4")

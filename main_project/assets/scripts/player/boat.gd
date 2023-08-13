@@ -5,13 +5,19 @@ const BOAT_MAX_SPEED:float = 30
 const BOAT_ACCEL:float = BOAT_MAX_SPEED/1
 const WATER_DECEL:float = BOAT_MAX_SPEED/1.5
 
-const HOOK_SPEED:float = 10
 const HOOK_LIM:float = -4
 
 # ====== Positions and Speeds ====== #
 @onready var buffered_boat_pos:float = position.x
 @onready var buffered_hook_pos:float = $hook_sprite.position.y
 var boat_speed:float = 0
+var hook_speed:float = 10
+
+
+# ====== hook catching variables ====== #
+var hook_capacity = 1
+var caught_fish = []
+var money = 0
 
 # ====== SIGNALS ====== #
 signal hook_move_notify(newpos)
@@ -39,9 +45,9 @@ func _process(delta):
 	
 	# ====== Hook Controls and Rendering ====== #
 	if Input.is_action_pressed("reel_down"):
-		buffered_hook_pos += HOOK_SPEED*delta
+		buffered_hook_pos += hook_speed*delta
 	elif Input.is_action_pressed("reel_up"):
-		buffered_hook_pos -= HOOK_SPEED*delta
+		buffered_hook_pos -= hook_speed*delta
 		buffered_hook_pos = max(HOOK_LIM, buffered_hook_pos)
 		
 	$hook_sprite.position.y = round(buffered_hook_pos)
@@ -52,3 +58,15 @@ func _process(delta):
 		$hook_sprite.show()
 	else:
 		$hook_sprite.hide()
+		for fish in caught_fish:
+			money += fish.call("get_value")
+			hook_speed += fish.call("get_weight")
+			fish.call("die")
+		caught_fish = []
+
+
+func _on_area_2d_body_entered(body:Node2D):
+	if body.has_method("caught") and len(caught_fish) < hook_capacity:
+		body.call("caught", $hook_sprite)
+		hook_speed -= body.call("get_weight")
+		caught_fish.append(body)

@@ -36,9 +36,8 @@ func _random_spawn(depth) -> Vector2:
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+func free_fish(depth):
+	current_spawns[depth-1] -= 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -51,5 +50,5 @@ func _process(delta):
 			return
 		current_spawns[depth-1] += 1
 		var spawn_pos = _random_spawn(depth)
-		fish.initialize(spawn_pos, spawn_bounds, origin)
+		fish.initialize(spawn_pos, spawn_bounds, origin, depth)
 		self.add_child(fish)
