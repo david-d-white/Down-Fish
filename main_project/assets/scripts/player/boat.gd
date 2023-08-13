@@ -1,9 +1,9 @@
 extends Node2D
 
 # ====== Movement Constants ====== #
-const BOAT_MAX_SPEED:float = 30
-const BOAT_ACCEL:float = BOAT_MAX_SPEED/1
-const WATER_DECEL:float = BOAT_MAX_SPEED/1.5
+var BOAT_MAX_SPEED:float = 30
+var BOAT_ACCEL:float = BOAT_MAX_SPEED/1
+var WATER_DECEL:float = BOAT_MAX_SPEED/1.5
 
 const HOOK_LIM:float = -4
 
@@ -17,7 +17,7 @@ var hook_speed:float = 10
 # ====== hook catching variables ====== #
 var hook_capacity = 1
 var caught_fish = []
-var money = 0
+@onready var global_vars = get_node("/root/GlobalVars")
 
 # ====== SIGNALS ====== #
 signal hook_move_notify(newpos)
@@ -59,7 +59,7 @@ func _process(delta):
 	else:
 		$hook_sprite.hide()
 		for fish in caught_fish:
-			money += fish.call("get_value")
+			global_vars.money += fish.call("get_value")
 			hook_speed += fish.call("get_weight")
 			fish.call("die")
 		caught_fish = []

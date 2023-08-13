@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfvu7d84r1wes"]
+
+[ext_resource type="Script" path="res://assets/scripts/ui/base_upgrade.gd" id="1_qf3fd"]
+[ext_resource type="FontFile" uid="uid://bagt8u7abyky" path="res://assets/sprites/Font.png" id="2_08126"]
+[ext_resource type="FontFile" uid="uid://bbus20fn0e8i8" path="res://assets/sprites/Font_white.png" id="3_12s07"]
+[ext_resource type="Texture2D" uid="uid://6y75e0kd7sve" path="res://assets/sprites/upgrade_pip_empty.png" id="4_fxv4n"]
+[ext_resource type="Texture2D" uid="uid://bjgnp20g38cdu" path="res://assets/sprites/upgrade_pip_full.png" id="5_6uyoi"]
+
+[sub_resource type="Theme" id="Theme_cq2fs"]
+default_font = ExtResource("2_08126")
+
+[node name="base_upgrade" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -216.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qf3fd")
+
+[node name="upgrade_label" type="RichTextLabel" parent="."]
+offset_left = 1.0
+offset_right = 21.0
+offset_bottom = 5.0
+theme = SubResource("Theme_cq2fs")
+text = "Boat:"
+
+[node name="upgrade_price" type="RichTextLabel" parent="."]
+offset_left = 21.0
+offset_right = 37.0
+offset_bottom = 5.0
+theme = SubResource("Theme_cq2fs")
+text = "$23"
+
+[node name="upgrade_buy" type="Button" parent="."]
+offset_top = 11.0
+offset_right = 20.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("3_12s07")
+text = "Buy"
+
+[node name="upgrade_pips" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 6.0
+offset_right = 41.0
+offset_bottom = 10.0
+
+[node name="empty_pips" type="TextureRect" parent="upgrade_pips"]
+texture_repeat = 2
+layout_mode = 0
+offset_left = 1.0
+offset_right = 40.0
+offset_bottom = 4.0
+texture = ExtResource("4_fxv4n")
+stretch_mode = 1
+
+[node name="filled_pips" type="TextureRect" parent="upgrade_pips/empty_pips"]
+texture_repeat = 2
+layout_mode = 0
+offset_right = 39.0
+offset_bottom = 4.0
+texture = ExtResource("5_6uyoi")
+stretch_mode = 1
+
+[connection signal="pressed" from="upgrade_buy" to="." method="_on_upgrade_buy_pressed"]
