@@ -10,23 +10,31 @@
 [node name="main" type="Node2D"]
 
 [node name="Map" type="Sprite2D" parent="."]
-position = Vector2(64, 32)
+position = Vector2(129, 65)
 texture = ExtResource("5_pdj6t")
 
 [node name="Island" parent="." instance=ExtResource("2_sqt6n")]
-position = Vector2(-379, -134)
+position = Vector2(-315, -102)
+
+[node name="upgrades" parent="Island" instance=ExtResource("7_f0f2r")]
+visible = false
+offset_left = -69.0
+offset_top = -90.0
+offset_right = 186.0
+offset_bottom = 39.0
 
 [node name="boat" parent="." instance=ExtResource("3_w5t17")]
-position = Vector2(-325, -106)
+position = Vector2(-261, -74)
 
 [node name="fish_spawner" parent="." instance=ExtResource("6_wfr3f")]
-position = Vector2(61, 28)
+position = Vector2(125, 60)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("boat")]
 position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("2_0l0nl")
-SOUTH_LIM = 64
-EAST_LIM = 128
+SIZE_WINDOWS = Vector2(12, 6)
+SOUTH_LIM = 128
+EAST_LIM = 256
 boat = NodePath("../boat")
 
 [node name="pause_bg" type="ColorRect" parent="Camera2D"]
@@ -59,9 +67,3 @@ offset_top = 25.0
 offset_right = 30.0
 offset_bottom = 40.0
 color = Color(0.211765, 0.211765, 0.211765, 1)
-
-[node name="upgrades" parent="." instance=ExtResource("7_f0f2r")]
-offset_left = -448.0
-offset_top = -224.0
-offset_right = -193.0
-offset_bottom = -95.0

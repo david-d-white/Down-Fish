@@ -124,7 +124,8 @@ func _process(delta):
 		$pause_bg.visible = true
 		paused = true
 	elif Input.is_action_pressed("click"):
-		get_viewport().warp_mouse(Vector2(RESOLUTION/2, RESOLUTION/2)) # Warp Mouse to Window Center
+		if paused:
+			get_viewport().warp_mouse(Vector2(RESOLUTION/2, RESOLUTION/2)) # Warp Mouse to Window Center
 		$pause_bg.visible = false
 		paused = false
 
