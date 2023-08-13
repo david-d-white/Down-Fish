@@ -18,7 +18,9 @@ run/size/resizable=false
 
 [display]
 
-window/size/mode=2
+window/size/viewport_width=64
+window/size/viewport_height=64
+window/size/resizable=false
 window/stretch/mode="viewport"
 
 [dotnet]

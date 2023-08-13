@@ -4,9 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://desi8ybn0ysg3" path="res://assets/scenes/island.tscn" id="2_sqt6n"]
 [ext_resource type="PackedScene" uid="uid://cvs58kdmkdxbk" path="res://assets/scenes/boat.tscn" id="3_w5t17"]
 [ext_resource type="Texture2D" uid="uid://bjp31ob7ynuu0" path="res://assets/sprites/Map 3.png" id="5_pdj6t"]
-[ext_resource type="PackedScene" uid="uid://d1i1d6wru0mcd" path="res://assets/scenes/fish_spawner.tscn" id="6_wfr3f"]
 [ext_resource type="PackedScene" uid="uid://d1wqjpkaur4kv" path="res://assets/scenes/enemy_spawner.tscn" id="6_g1mpo"]
-
+[ext_resource type="PackedScene" uid="uid://d1i1d6wru0mcd" path="res://assets/scenes/fish_spawner.tscn" id="6_wfr3f"]
 
 [node name="main" type="Node2D"]
 
@@ -53,7 +52,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.493545, 0.493546, 0.493546, 0.501961)
 
-
 [node name="ColorRect2" type="ColorRect" parent="Camera2D/pause_bg"]
 layout_mode = 0
 offset_left = 34.0
@@ -69,8 +67,5 @@ offset_top = 25.0
 offset_right = 30.0
 offset_bottom = 40.0
 color = Color(0.211765, 0.211765, 0.211765, 1)
-
-[connection signal="pause_close" from="Camera2D" to="Camera2D/pause_bg" method="_on_camera_2d_pause_close"]
-[connection signal="pause_open" from="Camera2D" to="Camera2D/pause_bg" method="_on_camera_2d_pause_open"]
 
 [editable path="Island/enemy_spawner"]

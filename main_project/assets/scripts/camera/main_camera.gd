@@ -53,10 +53,6 @@ var paused = false
 @export_group("")
 @export var boat:Node2D = null
 
-# ==== Signals ==== #
-signal pause_open(current_position)
-signal pause_close
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if Engine.is_editor_hint():
