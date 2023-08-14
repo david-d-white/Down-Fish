@@ -36,4 +36,11 @@ func _on_end_wind_timeout():
 	$fishing_music/wind.stop()
 
 
+func _on_start_attack_scene_timeout():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("fishing_phase"), true)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("attack_phase"), false)
+	$attack_music.play()
 
+func _on_end_attack_scene_timeout():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("fishing_phase"), false)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("attack_phase"), true)

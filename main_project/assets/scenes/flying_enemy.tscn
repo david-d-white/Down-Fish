@@ -112,7 +112,7 @@ shape = SubResource("CapsuleShape2D_y1q8y")
 
 [node name="squak" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_laq7q")
-bus = &"Attack_phase"
+bus = &"attack_phase"
 
 [connection signal="health_empty" from="HealthBar" to="." method="_on_health_bar_health_empty"]
 [connection signal="hit_success" from="Hitbox" to="." method="_on_hitbox_hit_success"]

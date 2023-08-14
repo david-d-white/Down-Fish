@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Drunken Sailor.mp3-a053f36114c54c494e295e7327
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfjjv4863en5j"]
+[gd_scene load_steps=17 format=3 uid="uid://dfjjv4863en5j"]
 
 [ext_resource type="Texture2D" uid="uid://cjjnx2se45sg8" path="res://assets/sprites/Map.jpg" id="1_e0dwt"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_spawner.gd" id="1_f1t1t"]
@@ -14,6 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://qv2ivhfyawtg" path="res://assets/audio/music/Leave Her Johny.mp3" id="11_wlvi5"]
 [ext_resource type="AudioStream" uid="uid://cqg2nfxvybrmd" path="res://assets/audio/music/Wind.wav" id="12_0g71b"]
 [ext_resource type="AudioStream" uid="uid://b7x7uife0voh3" path="res://assets/audio/music/Windy Waves.wav" id="13_ve7la"]
+[ext_resource type="AudioStream" uid="uid://bvi12n5x0j1ib" path="res://assets/audio/music/Drunken Sailor.mp3" id="15_foola"]
+[ext_resource type="Script" path="res://assets/scripts/wave_handler.gd" id="16_1tpuc"]
 
 [node name="main" type="Node2D"]
 
@@ -140,9 +142,28 @@ one_shot = true
 [node name="end_wind" type="Timer" parent="music/fishing_music"]
 one_shot = true
 
+[node name="attack_music" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("15_foola")
+autoplay = true
+bus = &"attack_phase"
+
+[node name="wave_handler" type="Node" parent="."]
+script = ExtResource("16_1tpuc")
+
+[node name="start_attack_scene" type="Timer" parent="wave_handler"]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="end_attack_scene" type="Timer" parent="wave_handler"]
+
 [connection signal="timeout" from="music/fishing_music/play_music" to="music" method="_on_play_music_timeout"]
 [connection signal="timeout" from="music/fishing_music/play_wind" to="music" method="_on_play_wind_timeout"]
 [connection signal="timeout" from="music/fishing_music/end_music" to="music" method="_on_end_music_timeout"]
 [connection signal="timeout" from="music/fishing_music/end_wind" to="music" method="_on_end_wind_timeout"]
+[connection signal="timeout" from="wave_handler/start_attack_scene" to="music" method="_on_start_attack_scene_timeout"]
+[connection signal="timeout" from="wave_handler/start_attack_scene" to="wave_handler" method="_on_start_attack_scene_timeout"]
+[connection signal="timeout" from="wave_handler/end_attack_scene" to="music" method="_on_end_attack_scene_timeout"]
+[connection signal="timeout" from="wave_handler/end_attack_scene" to="wave_handler" method="_on_end_attack_scene_timeout"]
 
 [editable path="Island/enemy_spawner"]
