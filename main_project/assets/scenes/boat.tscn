@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvs58kdmkdxbk"]
+[gd_scene load_steps=10 format=3 uid="uid://cvs58kdmkdxbk"]
 
 [ext_resource type="Script" path="res://assets/scripts/player/boat.gd" id="1_p2slu"]
 [ext_resource type="Texture2D" uid="uid://cpwja13efowgd" path="res://assets/sprites/entities/Rowboat.png" id="2_0uvju"]
 [ext_resource type="Texture2D" uid="uid://c7f12mx3ym1lh" path="res://assets/sprites/hook.png" id="3_6mov8"]
+[ext_resource type="FontFile" uid="uid://bagt8u7abyky" path="res://assets/sprites/Font.png" id="3_ic6hh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ysuc"]
 atlas = ExtResource("2_0uvju")
@@ -26,6 +27,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Theme" id="Theme_jj7he"]
+default_font = ExtResource("3_ic6hh")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bw5hr"]
 size = Vector2(4, 6)
 
@@ -39,6 +43,16 @@ frame_progress = 0.133068
 speed_scale = 0.25
 offset = Vector2(2.08165e-12, 2.08165e-12)
 flip_h = true
+
+[node name="money_notif" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -8.0
+offset_top = -14.0
+offset_right = 8.0
+offset_bottom = -9.0
+theme = SubResource("Theme_jj7he")
+text = "+13$"
+scroll_active = false
 
 [node name="hook_sprite" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, -4)

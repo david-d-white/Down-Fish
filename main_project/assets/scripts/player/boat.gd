@@ -7,11 +7,16 @@ var WATER_DECEL:float = BOAT_MAX_SPEED/1.5
 
 const HOOK_LIM:float = -4
 
+# ====== text duration variables ====== #
+const NOTIF_DURATION = 2.0
+var notif_delay = 0.0
+
 # ====== Positions and Speeds ====== #
 @onready var buffered_boat_pos:float = position.x
 @onready var buffered_hook_pos:float = $hook_sprite.position.y
 var boat_speed:float = 0
 var hook_speed:float = 10
+var hook_strength:float = 1.0
 
 
 # ====== hook catching variables ====== #
@@ -23,6 +28,11 @@ var caught_fish = []
 signal hook_move_notify(newpos)
 
 func _process(delta):
+	WATER_DECEL = BOAT_ACCEL/1.5
+	if notif_delay > 0.0:
+		notif_delay -= delta
+		if notif_delay <= 0.0:
+			$money_notif.visible = false
 	# ====== Boat Controls and Rendering ====== #
 	if Input.is_action_pressed("row_left"):
 		$boat_sprite.flip_h = false
@@ -58,15 +68,22 @@ func _process(delta):
 		$hook_sprite.show()
 	else:
 		$hook_sprite.hide()
+		var new_money = 0
 		for fish in caught_fish:
-			global_vars.money += fish.call("get_value")
+			new_money += fish.call("get_value")
+			global_vars.money += new_money
 			hook_speed += fish.call("get_weight")
 			fish.call("die")
+		if new_money != 0:
+			$money_notif.text = "+" + str(new_money) + "$"
+			$money_notif.size.x = (len(str(new_money)) + 2) * 5
+			$money_notif.visible = true
+			notif_delay = NOTIF_DURATION
 		caught_fish = []
 
 
 func _on_area_2d_body_entered(body:Node2D):
 	if body.has_method("caught") and len(caught_fish) < hook_capacity:
 		body.call("caught", $hook_sprite)
-		hook_speed -= body.call("get_weight")
+		hook_speed -= int(float(body.call("get_weight"))/hook_strength)
 		caught_fish.append(body)

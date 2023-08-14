@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cbgunq865ankb" path="res://assets/sprites/entities/Island_Hut.png" id="1_jllwp"]
 [ext_resource type="Script" path="res://assets/scripts/island.gd" id="1_ownyw"]
-[ext_resource type="PackedScene" uid="uid://bltrgfi1t86to" path="res://assets/scenes/hurtbox.tscn" id="2_jbe7f"]
-[ext_resource type="PackedScene" uid="uid://dsich7kfwoftf" path="res://assets/scenes/health_bar.tscn" id="3_qb5je"]
+[ext_resource type="PackedScene" uid="uid://fb86l65yu4yq" path="res://assets/scenes/hurtbox.tscn" id="2_jbe7f"]
+[ext_resource type="PackedScene" uid="uid://x4bxfwht6gow" path="res://assets/scenes/health_bar.tscn" id="3_qb5je"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_db6os"]
 atlas = ExtResource("1_jllwp")

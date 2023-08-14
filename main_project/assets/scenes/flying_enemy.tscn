@@ -1,50 +1,31 @@
-[gd_scene load_steps=14 format=3 uid="uid://csfjpgpia6huo"]
+[gd_scene load_steps=12 format=3 uid="uid://csfjpgpia6huo"]
 
+[ext_resource type="Texture2D" uid="uid://pnov2nqu8n51" path="res://assets/sprites/entities/Manta.png" id="1_8ubj3"]
 [ext_resource type="Script" path="res://assets/scripts/entities/flying_enemy.gd" id="1_gidyt"]
-[ext_resource type="Texture2D" uid="uid://fv15fmfp4crp" path="res://assets/sprites/entities/Bird.png" id="3_bslsp"]
-[ext_resource type="PackedScene" uid="uid://dsich7kfwoftf" path="res://assets/scenes/health_bar.tscn" id="3_n2u6f"]
-[ext_resource type="PackedScene" uid="uid://bltrgfi1t86to" path="res://assets/scenes/hurtbox.tscn" id="4_oslgo"]
-[ext_resource type="PackedScene" uid="uid://bdqr4w83kdnk8" path="res://assets/scenes/hitbox.tscn" id="5_m2pdq"]
+[ext_resource type="PackedScene" uid="uid://x4bxfwht6gow" path="res://assets/scenes/health_bar.tscn" id="3_n2u6f"]
+[ext_resource type="PackedScene" uid="uid://fb86l65yu4yq" path="res://assets/scenes/hurtbox.tscn" id="4_oslgo"]
+[ext_resource type="PackedScene" uid="uid://cs3ipm5fky4pg" path="res://assets/scenes/hitbox.tscn" id="5_m2pdq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5jtt8"]
-atlas = ExtResource("3_bslsp")
-region = Rect2(0, 0, 29, 17)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ykk5"]
+atlas = ExtResource("1_8ubj3")
+region = Rect2(0, 0, 25, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bwdmo"]
-atlas = ExtResource("3_bslsp")
-region = Rect2(29, 0, 29, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e04l6"]
-atlas = ExtResource("3_bslsp")
-region = Rect2(58, 0, 29, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nk7g7"]
-atlas = ExtResource("3_bslsp")
-region = Rect2(87, 0, 29, 17)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tcv0"]
+atlas = ExtResource("1_8ubj3")
+region = Rect2(25, 0, 25, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tkjan"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5jtt8")
+"texture": SubResource("AtlasTexture_5ykk5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bwdmo")
+"texture": SubResource("AtlasTexture_2tcv0")
 }],
 "loop": true,
-"name": &"Fly",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e04l6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nk7g7")
-}],
-"loop": true,
-"name": &"Peck",
-"speed": 5.0
+"name": &"default",
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8nt2v"]
@@ -57,7 +38,7 @@ height = 27.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y1q8y"]
 radius = 3.0
-height = 6.0
+height = 12.0
 
 [node name="flying_enemy" type="CharacterBody2D"]
 script = ExtResource("1_gidyt")

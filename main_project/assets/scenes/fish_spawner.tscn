@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://assets/scripts/fish_spawner.gd" id="1_tjf73"]
 [ext_resource type="PackedScene" uid="uid://culj08yoshoj1" path="res://assets/scenes/base_fish.tscn" id="2_gwfo4"]
-[ext_resource type="Texture2D" uid="uid://bjp31ob7ynuu0" path="res://assets/sprites/Map 3.png" id="3_tnhuo"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Map 3.png" id="3_tnhuo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_poohc"]
-size = Vector2(766, 68)
+size = Vector2(766, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26n0t"]
 size = Vector2(583, 126)
@@ -26,7 +26,7 @@ texture = ExtResource("3_tnhuo")
 position = Vector2(-252, -67)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="depth_1"]
-position = Vector2(383, -34)
+position = Vector2(383, -22)
 shape = SubResource("RectangleShape2D_poohc")
 
 [node name="depth_2" type="Area2D" parent="."]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://desi8ybn0ysg3" path="res://assets/scenes/island.tscn" id="2_sqt6n"]
 [ext_resource type="PackedScene" uid="uid://cvs58kdmkdxbk" path="res://assets/scenes/boat.tscn" id="3_w5t17"]
 [ext_resource type="PackedScene" uid="uid://d1wqjpkaur4kv" path="res://assets/scenes/enemy_spawner.tscn" id="5_j2ubn"]
-[ext_resource type="PackedScene" uid="uid://dpy6j4sqhlo74" path="res://assets/scenes/slingshot.tscn" id="5_wxsbc"]
+[ext_resource type="PackedScene" path="res://assets/scenes/slingshot.tscn" id="5_wxsbc"]
 [ext_resource type="PackedScene" uid="uid://d1i1d6wru0mcd" path="res://assets/scenes/fish_spawner.tscn" id="6_wfr3f"]
 [ext_resource type="PackedScene" uid="uid://c4bwe8ryn06ad" path="res://assets/scenes/upgrades.tscn" id="7_f0f2r"]
 [ext_resource type="PackedScene" uid="uid://csfjpgpia6huo" path="res://assets/scenes/flying_enemy.tscn" id="8_x6kvv"]
@@ -52,14 +52,15 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 [node name="CollisionShape2D" parent="Island/enemy_spawner/warning_area" index="0"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 
-[node name="upgrades" parent="Island" instance=ExtResource("7_f0f2r")]
+[node name="upgrades" parent="Island/enemy_spawner/warning_area" index="1" instance=ExtResource("7_f0f2r")]
 visible = false
-offset_left = -384.0
-offset_top = -192.0
-offset_right = -129.0
-offset_bottom = -63.0
+offset_left = -65.0
+offset_top = -92.0
+offset_right = 190.0
+offset_bottom = 37.0
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("boat")]
+process_mode = 3
 position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("2_0l0nl")
 SIZE_WINDOWS = Vector2(12, 6)

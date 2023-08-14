@@ -1,9 +1,12 @@
 extends Node2D
 
 const SLINGSHOT_COOLDOWN = 0.25
-const SLINGSHOT_SPEED = 500
+var SLINGSHOT_SPEED = 500
 const SLINGSHOT_INDICATOR_LENGTH = 25
+const SHOT_SPREAD = PI/16 # used when there are more than one projectile.
 @export var ammo:PackedScene = null
+var damage = 5
+var projectiles = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,10 +25,16 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("fire") && $Cooldown.is_stopped():
 		print("Firing")
-		var shot:RigidBody2D = ammo.instantiate()
-		shot.position = global_position
-		shot.apply_impulse(dir*SLINGSHOT_SPEED)
-		get_parent().get_parent().add_child(shot)
+		print(damage)
+		var angle = 0.0
+		for projectile in range(projectiles):
+			var shot:RigidBody2D = ammo.instantiate()
+			shot.position = global_position
+			shot.get_node("Hitbox").set("damage", damage)
+			shot.apply_impulse((dir.rotated(angle))*SLINGSHOT_SPEED)
+			get_parent().get_parent().add_child(shot)
+			angle += SHOT_SPREAD
+		
 		$Cooldown.start(SLINGSHOT_COOLDOWN)
 		pass
 		

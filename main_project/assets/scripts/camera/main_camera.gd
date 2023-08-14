@@ -123,11 +123,13 @@ func _process(delta):
 	if Input.is_action_pressed("esc"):
 		$pause_bg.visible = true
 		paused = true
+		get_tree().paused = true
 	elif Input.is_action_pressed("click"):
 		if paused:
 			get_viewport().warp_mouse(Vector2(RESOLUTION/2, RESOLUTION/2)) # Warp Mouse to Window Center
 		$pause_bg.visible = false
 		paused = false
+		get_tree().paused = false
 
 func _update_camera_offset(offset):
 	camera_offset = offset.clamp(Vector2(-WEST_LIM, -NORTH_LIM), Vector2(EAST_LIM, SOUTH_LIM)).round()
