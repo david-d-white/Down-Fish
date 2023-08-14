@@ -42,28 +42,29 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i1xc7"]
-radius = 8.0
-height = 18.0
+radius = 11.0
+height = 22.0
 
 [node name="Island" type="Node2D"]
 script = ExtResource("1_ownyw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-27, -28)
+position = Vector2(-27, -6)
 sprite_frames = SubResource("SpriteFrames_hxwg3")
 animation = &"Puff"
+autoplay = "Puff"
 frame_progress = 0.475031
 centered = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, 26)
+position = Vector2(0, 48)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(0.5, -27)
-polygon = PackedVector2Array(-27.5, 24, -21.5, 15, -10.5, 8, -7.5, 6, -7.5, -1, -4.5, -4, -4.5, -9, -1.5, -9, -1.5, -7, 5.5, -7, 8.5, -2, 8.5, 0, 7.5, 0, 7.5, 6, 14.5, 9, 20.5, 14, 23.5, 16, 26.5, 22, 27.5, 28, -27.5, 28)
+polygon = PackedVector2Array(-10.5, 8, -7.5, 6, -7.5, -1, -4.5, -4, -4.5, -9, -1.5, -9, -1.5, -7, 5.5, -7, 8.5, -2, 8.5, 0, 7.5, 0, 7.5, 6, 14.5, 9)
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_jbe7f")]
-position = Vector2(0, 26)
+position = Vector2(0, 48)
 LAYER = 4
 
 [node name="HurtboxShape" parent="Hurtbox" index="0"]
@@ -72,9 +73,9 @@ shape = SubResource("CapsuleShape2D_i1xc7")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_qb5je")]
 offset_left = -25.0
-offset_top = -30.0
+offset_top = -8.0
 offset_right = 26.0
-offset_bottom = -26.0
+offset_bottom = -4.0
 value = 0.980392
 max_health = 50
 current_health = 50

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vv4kjn88y10o"
+path="res://.godot/imported/dave like sound.wav-04edf02c0c4b3b4541ff03e13d448438.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/dave like sound.wav"
+dest_files=["res://.godot/imported/dave like sound.wav-04edf02c0c4b3b4541ff03e13d448438.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

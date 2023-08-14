@@ -25,7 +25,7 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("fire") && $Cooldown.is_stopped():
 		print("Firing")
-		print(damage)
+		$shoot_sound.play()
 		var angle = 0.0
 		for projectile in range(projectiles):
 			var shot:RigidBody2D = ammo.instantiate()

@@ -7,9 +7,9 @@ func _process(delta):
 	var money = global_node.money
 	$Current_money.text = "$:" + str(money)
 	$Current_money.size.x = len($Current_money.text)*5
-	if Input.is_action_just_pressed("open_menu"):
-		visible = not visible
-	if visible and (self.global_position - get_tree().get_root().get_node("main/boat").global_position).length() > 200:
+	if abs(get_tree().get_root().get_node("main/Island").global_position.x - get_tree().get_root().get_node("main/boat").global_position.x) < 15:
+		visible = true
+	else:
 		visible = false
 
 

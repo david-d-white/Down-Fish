@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfjjv4863en5j"]
+[gd_scene load_steps=15 format=3 uid="uid://dfjjv4863en5j"]
 
 [ext_resource type="Texture2D" uid="uid://cjjnx2se45sg8" path="res://assets/sprites/Map.jpg" id="1_e0dwt"]
 [ext_resource type="Script" path="res://assets/scripts/enemy_spawner.gd" id="1_f1t1t"]
@@ -6,10 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://desi8ybn0ysg3" path="res://assets/scenes/island.tscn" id="2_sqt6n"]
 [ext_resource type="PackedScene" uid="uid://cvs58kdmkdxbk" path="res://assets/scenes/boat.tscn" id="3_w5t17"]
 [ext_resource type="PackedScene" uid="uid://d1wqjpkaur4kv" path="res://assets/scenes/enemy_spawner.tscn" id="5_j2ubn"]
-[ext_resource type="PackedScene" path="res://assets/scenes/slingshot.tscn" id="5_wxsbc"]
+[ext_resource type="PackedScene" uid="uid://co18do6hfkk2w" path="res://assets/scenes/slingshot.tscn" id="5_wxsbc"]
 [ext_resource type="PackedScene" uid="uid://d1i1d6wru0mcd" path="res://assets/scenes/fish_spawner.tscn" id="6_wfr3f"]
 [ext_resource type="PackedScene" uid="uid://c4bwe8ryn06ad" path="res://assets/scenes/upgrades.tscn" id="7_f0f2r"]
 [ext_resource type="PackedScene" uid="uid://csfjpgpia6huo" path="res://assets/scenes/flying_enemy.tscn" id="8_x6kvv"]
+[ext_resource type="Script" path="res://assets/scripts/main_music.gd" id="11_c28x4"]
+[ext_resource type="AudioStream" uid="uid://qv2ivhfyawtg" path="res://assets/audio/music/Leave Her Johny.mp3" id="11_wlvi5"]
+[ext_resource type="AudioStream" uid="uid://cqg2nfxvybrmd" path="res://assets/audio/music/Wind.wav" id="12_0g71b"]
+[ext_resource type="AudioStream" uid="uid://b7x7uife0voh3" path="res://assets/audio/music/Windy Waves.wav" id="13_ve7la"]
 
 [node name="main" type="Node2D"]
 
@@ -17,20 +21,14 @@
 position = Vector2(128, 64)
 texture = ExtResource("1_e0dwt")
 
-[node name="boat" parent="." instance=ExtResource("3_w5t17")]
-position = Vector2(-261, -74)
-
-[node name="Slingshot" parent="boat" instance=ExtResource("5_wxsbc")]
-position = Vector2(-1, -6)
-
 [node name="fish_spawner" parent="." instance=ExtResource("6_wfr3f")]
 position = Vector2(125, 60)
 
 [node name="Island" parent="." instance=ExtResource("2_sqt6n")]
-position = Vector2(-318, -101)
+position = Vector2(-319, -106)
 
 [node name="enemy_spawner" parent="Island" instance=ExtResource("5_j2ubn")]
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(1, 7)
 script = ExtResource("1_f1t1t")
 enemy_scene = ExtResource("8_x6kvv")
 
@@ -58,6 +56,12 @@ offset_left = -65.0
 offset_top = -92.0
 offset_right = 190.0
 offset_bottom = 37.0
+
+[node name="boat" parent="." instance=ExtResource("3_w5t17")]
+position = Vector2(-261, -74)
+
+[node name="Slingshot" parent="boat" instance=ExtResource("5_wxsbc")]
+position = Vector2(-1, -6)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("boat")]
 process_mode = 3
@@ -98,5 +102,47 @@ offset_top = 25.0
 offset_right = 30.0
 offset_bottom = 40.0
 color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[node name="music" type="Node" parent="."]
+script = ExtResource("11_c28x4")
+
+[node name="fishing_music" type="Node" parent="music"]
+
+[node name="wind" type="AudioStreamPlayer" parent="music/fishing_music"]
+stream = ExtResource("12_0g71b")
+volume_db = -7.148
+bus = &"fishing_phase"
+
+[node name="waves" type="AudioStreamPlayer" parent="music/fishing_music"]
+stream = ExtResource("13_ve7la")
+volume_db = 10.0
+pitch_scale = 0.5
+autoplay = true
+bus = &"fishing_phase"
+
+[node name="piano" type="AudioStreamPlayer" parent="music/fishing_music"]
+stream = ExtResource("11_wlvi5")
+bus = &"fishing_phase"
+
+[node name="play_music" type="Timer" parent="music/fishing_music"]
+wait_time = 300.0
+one_shot = true
+autostart = true
+
+[node name="play_wind" type="Timer" parent="music/fishing_music"]
+wait_time = 500.0
+one_shot = true
+autostart = true
+
+[node name="end_music" type="Timer" parent="music/fishing_music"]
+one_shot = true
+
+[node name="end_wind" type="Timer" parent="music/fishing_music"]
+one_shot = true
+
+[connection signal="timeout" from="music/fishing_music/play_music" to="music" method="_on_play_music_timeout"]
+[connection signal="timeout" from="music/fishing_music/play_wind" to="music" method="_on_play_wind_timeout"]
+[connection signal="timeout" from="music/fishing_music/end_music" to="music" method="_on_end_music_timeout"]
+[connection signal="timeout" from="music/fishing_music/end_wind" to="music" method="_on_end_wind_timeout"]
 
 [editable path="Island/enemy_spawner"]

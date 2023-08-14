@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvs58kdmkdxbk"]
+[gd_scene load_steps=13 format=3 uid="uid://cvs58kdmkdxbk"]
 
 [ext_resource type="Script" path="res://assets/scripts/player/boat.gd" id="1_p2slu"]
 [ext_resource type="Texture2D" uid="uid://cpwja13efowgd" path="res://assets/sprites/entities/Rowboat.png" id="2_0uvju"]
 [ext_resource type="Texture2D" uid="uid://c7f12mx3ym1lh" path="res://assets/sprites/hook.png" id="3_6mov8"]
 [ext_resource type="FontFile" uid="uid://bagt8u7abyky" path="res://assets/sprites/Font.png" id="3_ic6hh"]
+[ext_resource type="AudioStream" uid="uid://ch5ymcb1fa8hm" path="res://assets/audio/sfx/caught fish.wav" id="5_43hix"]
+[ext_resource type="AudioStream" uid="uid://ecyheura30fl" path="res://assets/audio/sfx/fish sold.wav" id="6_pyn3s"]
+[ext_resource type="AudioStream" uid="uid://bgejwl2d52tb5" path="res://assets/audio/sfx/fish sold big.wav" id="7_r5h3y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ysuc"]
 atlas = ExtResource("2_0uvju")
@@ -73,5 +76,19 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 points = PackedVector2Array(0.5, -4, 0.5, -4)
 width = 1.0
 default_color = Color(0.376471, 0.376471, 0.376471, 1)
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="fish_pickup" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("5_43hix")
+bus = &"fishing_phase"
+
+[node name="fish_sold" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("6_pyn3s")
+bus = &"fishing_phase"
+
+[node name="big_fish_sold" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("7_r5h3y")
+bus = &"fishing_phase"
 
 [connection signal="body_entered" from="hook_sprite/Area2D" to="." method="_on_area_2d_body_entered"]

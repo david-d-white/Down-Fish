@@ -1,31 +1,51 @@
-[gd_scene load_steps=12 format=3 uid="uid://csfjpgpia6huo"]
+[gd_scene load_steps=15 format=3 uid="uid://csfjpgpia6huo"]
 
-[ext_resource type="Texture2D" uid="uid://pnov2nqu8n51" path="res://assets/sprites/entities/Manta.png" id="1_8ubj3"]
 [ext_resource type="Script" path="res://assets/scripts/entities/flying_enemy.gd" id="1_gidyt"]
+[ext_resource type="Texture2D" uid="uid://fv15fmfp4crp" path="res://assets/sprites/entities/Bird.png" id="3_44h28"]
 [ext_resource type="PackedScene" uid="uid://x4bxfwht6gow" path="res://assets/scenes/health_bar.tscn" id="3_n2u6f"]
 [ext_resource type="PackedScene" uid="uid://fb86l65yu4yq" path="res://assets/scenes/hurtbox.tscn" id="4_oslgo"]
 [ext_resource type="PackedScene" uid="uid://cs3ipm5fky4pg" path="res://assets/scenes/hitbox.tscn" id="5_m2pdq"]
+[ext_resource type="AudioStream" uid="uid://db156qnv72ivw" path="res://assets/audio/sfx/Seagull.wav" id="6_laq7q"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ykk5"]
-atlas = ExtResource("1_8ubj3")
-region = Rect2(0, 0, 25, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7xk5"]
+atlas = ExtResource("3_44h28")
+region = Rect2(0, 0, 29, 17)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tcv0"]
-atlas = ExtResource("1_8ubj3")
-region = Rect2(25, 0, 25, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_it3ru"]
+atlas = ExtResource("3_44h28")
+region = Rect2(29, 0, 29, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kambw"]
+atlas = ExtResource("3_44h28")
+region = Rect2(58, 0, 29, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w51b"]
+atlas = ExtResource("3_44h28")
+region = Rect2(87, 0, 29, 17)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tkjan"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ykk5")
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_y7xk5")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2tcv0")
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_it3ru")
 }],
 "loop": true,
-"name": &"default",
-"speed": 10.0
+"name": &"base_bird",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_kambw")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_7w51b")
+}],
+"loop": true,
+"name": &"swoop",
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8nt2v"]
@@ -60,8 +80,9 @@ current_health = 10
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, 0)
 sprite_frames = SubResource("SpriteFrames_tkjan")
-animation = &"Fly"
-frame_progress = 0.925252
+animation = &"swoop"
+autoplay = "base_bird"
+frame_progress = 0.487138
 offset = Vector2(-2.5, 2.08165e-12)
 
 [node name="Hitbox" parent="." instance=ExtResource("5_m2pdq")]
@@ -89,7 +110,12 @@ position = Vector2(3.52843e-14, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_y1q8y")
 
+[node name="squak" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_laq7q")
+bus = &"Attack_phase"
+
 [connection signal="health_empty" from="HealthBar" to="." method="_on_health_bar_health_empty"]
+[connection signal="hit_success" from="Hitbox" to="." method="_on_hitbox_hit_success"]
 [connection signal="damage_taken" from="Hurtbox" to="." method="_on_hurtbox_damage_taken"]
 
 [editable path="Hitbox"]

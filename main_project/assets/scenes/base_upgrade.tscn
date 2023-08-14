@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfvu7d84r1wes"]
+[gd_scene load_steps=9 format=3 uid="uid://cfvu7d84r1wes"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/base_upgrade.gd" id="1_qf3fd"]
 [ext_resource type="FontFile" uid="uid://bagt8u7abyky" path="res://assets/sprites/Font.png" id="2_08126"]
 [ext_resource type="FontFile" uid="uid://bbus20fn0e8i8" path="res://assets/sprites/Font_white.png" id="3_12s07"]
 [ext_resource type="Texture2D" uid="uid://6y75e0kd7sve" path="res://assets/sprites/upgrade_pip_empty.png" id="4_fxv4n"]
 [ext_resource type="Texture2D" uid="uid://bjgnp20g38cdu" path="res://assets/sprites/upgrade_pip_full.png" id="5_6uyoi"]
+[ext_resource type="AudioStream" uid="uid://bgejwl2d52tb5" path="res://assets/audio/sfx/fish sold big.wav" id="6_600js"]
+[ext_resource type="AudioStream" uid="uid://vv4kjn88y10o" path="res://assets/audio/sfx/dave like sound.wav" id="7_dif64"]
 
 [sub_resource type="Theme" id="Theme_cq2fs"]
 default_font = ExtResource("2_08126")
@@ -21,6 +23,7 @@ grow_vertical = 2
 script = ExtResource("1_qf3fd")
 
 [node name="upgrade_label" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 1.0
 offset_right = 21.0
 offset_bottom = 5.0
@@ -28,6 +31,7 @@ theme = SubResource("Theme_cq2fs")
 text = "Boat:"
 
 [node name="upgrade_price" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 21.0
 offset_right = 37.0
 offset_bottom = 5.0
@@ -35,6 +39,7 @@ theme = SubResource("Theme_cq2fs")
 text = "$23"
 
 [node name="upgrade_buy" type="Button" parent="."]
+layout_mode = 0
 offset_top = 11.0
 offset_right = 20.0
 offset_bottom = 24.0
@@ -64,5 +69,12 @@ offset_right = 39.0
 offset_bottom = 4.0
 texture = ExtResource("5_6uyoi")
 stretch_mode = 1
+
+[node name="purchase" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_600js")
+
+[node name="failed_purchase" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_dif64")
+pitch_scale = 2.0
 
 [connection signal="pressed" from="upgrade_buy" to="." method="_on_upgrade_buy_pressed"]

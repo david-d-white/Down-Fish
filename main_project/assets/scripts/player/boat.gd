@@ -56,9 +56,11 @@ func _process(delta):
 	# ====== Hook Controls and Rendering ====== #
 	if Input.is_action_pressed("reel_down"):
 		buffered_hook_pos += hook_speed*delta
+		change_depth_effect()
 	elif Input.is_action_pressed("reel_up"):
 		buffered_hook_pos -= hook_speed*delta
 		buffered_hook_pos = max(HOOK_LIM, buffered_hook_pos)
+		change_depth_effect()
 		
 	$hook_sprite.position.y = round(buffered_hook_pos)
 	$line.points[1].y = $hook_sprite.position.y
@@ -79,11 +81,24 @@ func _process(delta):
 			$money_notif.size.x = (len(str(new_money)) + 2) * 5
 			$money_notif.visible = true
 			notif_delay = NOTIF_DURATION
+			if new_money >= 10:
+				$sfx/big_fish_sold.play()
+			else:
+				$sfx/fish_sold.play()
 		caught_fish = []
 
 
 func _on_area_2d_body_entered(body:Node2D):
 	if body.has_method("caught") and len(caught_fish) < hook_capacity:
 		body.call("caught", $hook_sprite)
+		$sfx/fish_pickup.play()
 		hook_speed -= int(float(body.call("get_weight"))/hook_strength)
 		caught_fish.append(body)
+
+func change_depth_effect():
+	print($hook_sprite.global_position.y)
+	var index = AudioServer.get_bus_index("fishing_phase")
+	var effect:AudioEffectLowPassFilter = AudioServer.get_bus_effect(index, 0)
+	effect.cutoff_hz = 233716/($hook_sprite.global_position.y+175)-418
+	print(effect.cutoff_hz)
+	

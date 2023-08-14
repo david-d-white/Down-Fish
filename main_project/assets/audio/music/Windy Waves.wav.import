@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b7x7uife0voh3"
+path="res://.godot/imported/Windy Waves.wav-73c333bfefb9ffb4bc32596e4f425822.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/Windy Waves.wav"
+dest_files=["res://.godot/imported/Windy Waves.wav-73c333bfefb9ffb4bc32596e4f425822.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

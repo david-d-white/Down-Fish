@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpy6j4sqhlo74"]
+[gd_scene load_steps=5 format=3 uid="uid://co18do6hfkk2w"]
 
 [ext_resource type="Script" path="res://assets/scripts/slingshot.gd" id="1_o8rap"]
 [ext_resource type="Texture2D" uid="uid://bjvd5fn6xjg5p" path="res://assets/sprites/target.png" id="2_6jrs0"]
-[ext_resource type="PackedScene" uid="uid://bkxg4ihuscq5h" path="res://assets/scenes/slingshot_ammo.tscn" id="2_a220k"]
+[ext_resource type="PackedScene" uid="uid://n3je320scah8" path="res://assets/scenes/slingshot_ammo.tscn" id="2_a220k"]
+[ext_resource type="AudioStream" uid="uid://cv3cx6si0swuv" path="res://assets/audio/sfx/shoot.wav" id="4_7wt6c"]
 
 [node name="Slingshot" type="Node2D"]
 script = ExtResource("1_o8rap")
@@ -20,3 +21,6 @@ texture = ExtResource("2_6jrs0")
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="shoot_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7wt6c")

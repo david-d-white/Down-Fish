@@ -62,6 +62,9 @@ func update_node():
 func _on_upgrade_buy_pressed():
 	var money = global_vars.money
 	if purchased < len(prices) and money >= prices[purchased]:
+		$purchase.play()
 		global_vars.money -= prices[purchased]
 		purchased += 1
 		update_upgrade_prices()
+	else:
+		$failed_purchase.play()
