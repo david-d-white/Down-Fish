@@ -1,10 +1,10 @@
-extends Control
+extends NinePatchRect
 
-@onready var global_node = get_node("/root/GlobalVars")
+#@onready var global_node = get_node("/root/GlobalVars")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var money = global_node.money
+	var money = Globals.money
 	$Current_money.text = "$:" + str(money)
 	$Current_money.size.x = len($Current_money.text)*5
 	if abs(get_tree().get_root().get_node("main/Island").global_position.x - get_tree().get_root().get_node("main/boat").global_position.x) < 15:

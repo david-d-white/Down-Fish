@@ -22,7 +22,6 @@ var hook_strength:float = 1.0
 # ====== hook catching variables ====== #
 var hook_capacity = 1
 var caught_fish = []
-@onready var global_vars = get_node("/root/GlobalVars")
 
 # ====== SIGNALS ====== #
 signal hook_move_notify(newpos)
@@ -73,7 +72,7 @@ func _process(delta):
 		var new_money = 0
 		for fish in caught_fish:
 			new_money += fish.call("get_value")
-			global_vars.money += new_money
+			Globals.money += new_money
 			hook_speed += fish.call("get_weight")
 			fish.call("die")
 		if new_money != 0:

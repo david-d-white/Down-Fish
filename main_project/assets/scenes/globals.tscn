@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://ceblxs1l5vau8"]
+
+[ext_resource type="Script" path="res://assets/scripts/globals.gd" id="1_f4gri"]
+[ext_resource type="AudioStream" uid="uid://bvi12n5x0j1ib" path="res://assets/audio/music/Drunken Sailor.mp3" id="2_j680w"]
+[ext_resource type="AudioStream" uid="uid://qv2ivhfyawtg" path="res://assets/audio/music/Leave Her Johny.mp3" id="3_4yuss"]
+[ext_resource type="AudioStream" uid="uid://yqnhmljaysoa" path="res://assets/audio/music/shanty 64.mp3" id="4_n834q"]
+[ext_resource type="AudioStream" uid="uid://cqg2nfxvybrmd" path="res://assets/audio/music/Wind.wav" id="5_af1an"]
+[ext_resource type="AudioStream" uid="uid://b7x7uife0voh3" path="res://assets/audio/music/Windy Waves.wav" id="6_pxddn"]
+
+[node name="Globals" type="Node"]
+script = ExtResource("1_f4gri")
+
+[node name="wave_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="wave_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="DrunkenSailor" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_j680w")
+
+[node name="LeaveHerJohnny" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4yuss")
+volume_db = -7.0
+
+[node name="Shanty64" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n834q")
+
+[node name="Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_af1an")
+volume_db = -7.0
+
+[node name="WindyWaves" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pxddn")
+
+[connection signal="timeout" from="wave_timer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="wave_cooldown" to="." method="_on_wave_cooldown_timeout"]

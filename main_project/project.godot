@@ -18,7 +18,7 @@ run/size/resizable=false
 
 [autoload]
 
-GlobalVars="*res://assets/scripts/player/global_vars.gd"
+Globals="*res://assets/scenes/globals.tscn"
 
 [display]
 

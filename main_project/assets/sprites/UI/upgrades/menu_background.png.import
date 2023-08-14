@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6y75e0kd7sve"
-path="res://.godot/imported/upgrade_pip_empty.png-cd1b7aa42655a8cade8e7afd65b0375d.ctex"
+uid="uid://bmcj0bwvsmlvp"
+path="res://.godot/imported/menu_background.png-63106a87094d4fa6e7a6a29533a565f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/upgrade_pip_empty.png"
-dest_files=["res://.godot/imported/upgrade_pip_empty.png-cd1b7aa42655a8cade8e7afd65b0375d.ctex"]
+source_file="res://assets/sprites/UI/upgrades/menu_background.png"
+dest_files=["res://.godot/imported/menu_background.png-63106a87094d4fa6e7a6a29533a565f7.ctex"]
 
 [params]
 

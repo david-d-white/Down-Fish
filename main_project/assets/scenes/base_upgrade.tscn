@@ -1,15 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfvu7d84r1wes"]
+[gd_scene load_steps=10 format=3 uid="uid://cfvu7d84r1wes"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/base_upgrade.gd" id="1_qf3fd"]
 [ext_resource type="FontFile" uid="uid://bagt8u7abyky" path="res://assets/sprites/Font.png" id="2_08126"]
 [ext_resource type="FontFile" uid="uid://bbus20fn0e8i8" path="res://assets/sprites/Font_white.png" id="3_12s07"]
-[ext_resource type="Texture2D" uid="uid://6y75e0kd7sve" path="res://assets/sprites/upgrade_pip_empty.png" id="4_fxv4n"]
-[ext_resource type="Texture2D" uid="uid://bjgnp20g38cdu" path="res://assets/sprites/upgrade_pip_full.png" id="5_6uyoi"]
+[ext_resource type="Texture2D" uid="uid://6y75e0kd7sve" path="res://assets/sprites/UI/upgrades/upgrade_pip_empty.png" id="4_1oqu0"]
+[ext_resource type="Texture2D" uid="uid://bjgnp20g38cdu" path="res://assets/sprites/UI/upgrades/upgrade_pip_full.png" id="5_prttw"]
 [ext_resource type="AudioStream" uid="uid://bgejwl2d52tb5" path="res://assets/audio/sfx/fish sold big.wav" id="6_600js"]
 [ext_resource type="AudioStream" uid="uid://vv4kjn88y10o" path="res://assets/audio/sfx/dave like sound.wav" id="7_dif64"]
 
 [sub_resource type="Theme" id="Theme_cq2fs"]
 default_font = ExtResource("2_08126")
+
+[sub_resource type="Theme" id="Theme_qbbky"]
 
 [node name="base_upgrade" type="Control"]
 layout_mode = 3
@@ -43,6 +45,7 @@ layout_mode = 0
 offset_top = 11.0
 offset_right = 20.0
 offset_bottom = 24.0
+theme = SubResource("Theme_qbbky")
 theme_override_fonts/font = ExtResource("3_12s07")
 text = "Buy"
 
@@ -59,7 +62,7 @@ layout_mode = 0
 offset_left = 1.0
 offset_right = 40.0
 offset_bottom = 4.0
-texture = ExtResource("4_fxv4n")
+texture = ExtResource("4_1oqu0")
 stretch_mode = 1
 
 [node name="filled_pips" type="TextureRect" parent="upgrade_pips/empty_pips"]
@@ -67,7 +70,7 @@ texture_repeat = 2
 layout_mode = 0
 offset_right = 39.0
 offset_bottom = 4.0
-texture = ExtResource("5_6uyoi")
+texture = ExtResource("5_prttw")
 stretch_mode = 1
 
 [node name="purchase" type="AudioStreamPlayer" parent="."]

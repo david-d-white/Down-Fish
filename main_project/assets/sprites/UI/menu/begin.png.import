@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjgnp20g38cdu"
-path="res://.godot/imported/upgrade_pip_full.png-02f8e43c38dd76b9846b0c90b7ab2e52.ctex"
+uid="uid://c26c3r5seuhov"
+path="res://.godot/imported/begin.png-bd13ab80819eb3c3a18c7573feb0a031.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/upgrade_pip_full.png"
-dest_files=["res://.godot/imported/upgrade_pip_full.png-02f8e43c38dd76b9846b0c90b7ab2e52.ctex"]
+source_file="res://assets/sprites/UI/menu/begin.png"
+dest_files=["res://.godot/imported/begin.png-bd13ab80819eb3c3a18c7573feb0a031.ctex"]
 
 [params]
 
