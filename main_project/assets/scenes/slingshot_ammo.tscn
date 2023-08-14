@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkxg4ihuscq5h"]
+
+[ext_resource type="Texture2D" uid="uid://been0f5s1j5wn" path="res://assets/sprites/ammo.png" id="1_m2fsn"]
+[ext_resource type="PackedScene" uid="uid://bdqr4w83kdnk8" path="res://assets/scenes/hitbox.tscn" id="2_fsa4i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6u2jh"]
+radius = 2.0
+
+[node name="SlingshotAmmo" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, 0.5)
+texture = ExtResource("1_m2fsn")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_fsa4i")]
+MASK = 2
+damage = 5
+
+[node name="HitboxShape" parent="Hitbox" index="0"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_6u2jh")
+
+[editable path="Hitbox"]

@@ -1,33 +1,63 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfjjv4863en5j"]
+[gd_scene load_steps=11 format=3 uid="uid://dfjjv4863en5j"]
 
+[ext_resource type="Texture2D" uid="uid://cjjnx2se45sg8" path="res://assets/sprites/Map.jpg" id="1_e0dwt"]
+[ext_resource type="Script" path="res://assets/scripts/enemy_spawner.gd" id="1_f1t1t"]
 [ext_resource type="Script" path="res://assets/scripts/camera/main_camera.gd" id="2_0l0nl"]
 [ext_resource type="PackedScene" uid="uid://desi8ybn0ysg3" path="res://assets/scenes/island.tscn" id="2_sqt6n"]
 [ext_resource type="PackedScene" uid="uid://cvs58kdmkdxbk" path="res://assets/scenes/boat.tscn" id="3_w5t17"]
-[ext_resource type="Texture2D" uid="uid://bjp31ob7ynuu0" path="res://assets/sprites/Map 3.png" id="5_pdj6t"]
+[ext_resource type="PackedScene" uid="uid://d1wqjpkaur4kv" path="res://assets/scenes/enemy_spawner.tscn" id="5_j2ubn"]
+[ext_resource type="PackedScene" uid="uid://dpy6j4sqhlo74" path="res://assets/scenes/slingshot.tscn" id="5_wxsbc"]
 [ext_resource type="PackedScene" uid="uid://d1i1d6wru0mcd" path="res://assets/scenes/fish_spawner.tscn" id="6_wfr3f"]
 [ext_resource type="PackedScene" uid="uid://c4bwe8ryn06ad" path="res://assets/scenes/upgrades.tscn" id="7_f0f2r"]
+[ext_resource type="PackedScene" uid="uid://csfjpgpia6huo" path="res://assets/scenes/flying_enemy.tscn" id="8_x6kvv"]
 
 [node name="main" type="Node2D"]
 
 [node name="Map" type="Sprite2D" parent="."]
-position = Vector2(129, 65)
-texture = ExtResource("5_pdj6t")
-
-[node name="Island" parent="." instance=ExtResource("2_sqt6n")]
-position = Vector2(-315, -102)
-
-[node name="upgrades" parent="Island" instance=ExtResource("7_f0f2r")]
-visible = false
-offset_left = -69.0
-offset_top = -90.0
-offset_right = 186.0
-offset_bottom = 39.0
+position = Vector2(128, 64)
+texture = ExtResource("1_e0dwt")
 
 [node name="boat" parent="." instance=ExtResource("3_w5t17")]
 position = Vector2(-261, -74)
 
+[node name="Slingshot" parent="boat" instance=ExtResource("5_wxsbc")]
+position = Vector2(-1, -6)
+
 [node name="fish_spawner" parent="." instance=ExtResource("6_wfr3f")]
 position = Vector2(125, 60)
+
+[node name="Island" parent="." instance=ExtResource("2_sqt6n")]
+position = Vector2(-318, -101)
+
+[node name="enemy_spawner" parent="Island" instance=ExtResource("5_j2ubn")]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_f1t1t")
+enemy_scene = ExtResource("8_x6kvv")
+
+[node name="spawn_max" parent="Island/enemy_spawner" index="0"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape2D" parent="Island/enemy_spawner/spawn_max" index="0"]
+position = Vector2(458, -46)
+
+[node name="spawn_min" parent="Island/enemy_spawner" index="1"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape2D" parent="Island/enemy_spawner/spawn_min" index="0"]
+position = Vector2(446, -33)
+
+[node name="warning_area" parent="Island/enemy_spawner" index="2"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape2D" parent="Island/enemy_spawner/warning_area" index="0"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="upgrades" parent="Island" instance=ExtResource("7_f0f2r")]
+visible = false
+offset_left = -384.0
+offset_top = -192.0
+offset_right = -129.0
+offset_bottom = -63.0
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("boat")]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -67,3 +97,5 @@ offset_top = 25.0
 offset_right = 30.0
 offset_bottom = 40.0
 color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[editable path="Island/enemy_spawner"]

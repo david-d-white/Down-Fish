@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjp31ob7ynuu0"
-path="res://.godot/imported/Map 3.png-d76bf6d227ab459b136a5aca7510f286.ctex"
+uid="uid://been0f5s1j5wn"
+path="res://.godot/imported/ammo.png-da20c5b183540c8b26f7476034a349cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Map 3.png"
-dest_files=["res://.godot/imported/Map 3.png-d76bf6d227ab459b136a5aca7510f286.ctex"]
+source_file="res://assets/sprites/ammo.png"
+dest_files=["res://.godot/imported/ammo.png-da20c5b183540c8b26f7476034a349cf.ctex"]
 
 [params]
 
