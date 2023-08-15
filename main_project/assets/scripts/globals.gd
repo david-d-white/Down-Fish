@@ -40,7 +40,8 @@ func _ready():
 func set_state(new_state:GAME_STATE):
 	self.game_state = new_state
 	print(game_state)
-	_stop_music()
+	if new_state != GAME_STATE.WAVE_CLEANUP:
+		_stop_music()
 	match new_state:
 		GAME_STATE.TITLE:
 			money = 0
@@ -57,7 +58,6 @@ func set_state(new_state:GAME_STATE):
 		GAME_STATE.WAVE_CLEANUP:
 			$wave_timer.stop()
 			$wave_cooldown.stop()
-			$DrunkenSailor.play(0)
 		GAME_STATE.GAME_OVER:
 			$wave_timer.stop()
 			$wave_cooldown.stop()
