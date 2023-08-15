@@ -28,6 +28,9 @@ func _on_hurtbox_damage_taken(hitbox):
 	$HealthBar.change_health(-hitbox.damage)
 
 func _on_health_bar_health_empty():
+	Globals.enemy_count -= 1
+	if Globals.enemy_count == 0 and Globals.game_state == Globals.GAME_STATE.WAVE_CLEANUP:
+		Globals.set_state(Globals.GAME_STATE.WAVE_COOLDOWN)
 	queue_free()
 
 func _on_hitbox_hit_success(hurtbox):

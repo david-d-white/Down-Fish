@@ -31,4 +31,5 @@ func _on_spawn_timer_timeout():
 	var enemy = enemy_scene.instantiate()
 	enemy.initialize(spawn_pos, self.position)
 	get_parent().add_child(enemy)
+	Globals.enemy_count += 1
 	pass # Replace with function body.

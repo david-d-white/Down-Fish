@@ -4,6 +4,9 @@ extends NinePatchRect
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Globals.game_state != Globals.GAME_STATE.WAVE_COOLDOWN:
+		visible = false
+		return
 	var money = Globals.money
 	$Current_money.text = "$:" + str(money)
 	$Current_money.size.x = len($Current_money.text)*5

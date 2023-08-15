@@ -1,14 +1,16 @@
 extends Node
 
 const WAVE_TIMER_INIT = 30
-const WAVE_COOLDOWN_INIT = 120
+const WAVE_COOLDOWN_INIT = 16
 const WARNING_TIME = 15
 
 var money = 0
 var waves = 0
 var score = 0
 
-enum GAME_STATE {TITLE, WAVE_COOLDOWN, WAVE, WARNING, GAME_OVER} # Currently Unused, intended for replays
+var enemy_count = 0
+
+enum GAME_STATE {TITLE, WAVE_COOLDOWN, WAVE, WAVE_CLEANUP, GAME_OVER} # Currently Unused, intended for replays
 var game_state:GAME_STATE = GAME_STATE.TITLE
 
 const FISH_DICT = {"manta_ray": [4, 26, 2, 8, 10, 3, 2,true], 
@@ -37,6 +39,7 @@ func _ready():
 
 func set_state(new_state:GAME_STATE):
 	self.game_state = new_state
+	print(game_state)
 	_stop_music()
 	match new_state:
 		GAME_STATE.TITLE:
@@ -51,6 +54,10 @@ func set_state(new_state:GAME_STATE):
 		GAME_STATE.WAVE:	
 			$wave_timer.start(WAVE_TIMER_INIT + min(300, 15*waves))
 			$DrunkenSailor.play(0)
+		GAME_STATE.WAVE_CLEANUP:
+			$wave_timer.stop()
+			$wave_cooldown.stop()
+			$DrunkenSailor.play(0)
 		GAME_STATE.GAME_OVER:
 			$wave_timer.stop()
 			$wave_cooldown.stop()
@@ -64,7 +71,10 @@ func _stop_music():
 
 func _on_wave_timer_timeout():
 	waves += 1
-	set_state(GAME_STATE.WAVE_COOLDOWN)
+	if enemy_count != 0:
+		set_state(GAME_STATE.WAVE_CLEANUP)
+	else:
+		set_state(GAME_STATE.WAVE_COOLDOWN)
 
 func _on_wave_cooldown_timeout():
 	set_state(GAME_STATE.WAVE)
