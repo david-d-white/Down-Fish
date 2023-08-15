@@ -33,7 +33,6 @@ stream = ExtResource("4_n834q")
 
 [node name="WindyWaves" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_vdfco")
-volume_db = -10.15
 bus = &"fishing_phase"
 
 [connection signal="timeout" from="wave_timer" to="." method="_on_wave_timer_timeout"]
