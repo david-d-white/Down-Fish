@@ -2,7 +2,9 @@
 
 @export_range(1,100,1, "or_greater") var max_health:int = 100:
 	set(new_max):
+		var health_loss = max_health - current_health
 		max_health = max(new_max, 1)
+		current_health = max_health - health_loss
 		resize_healthbar()
 		
 @export var current_health:int = 100:

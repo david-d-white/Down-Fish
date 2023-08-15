@@ -2,17 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://cpywxg14h0mcl" path="res://assets/sprites/UI/upgrades/button_normal.tres" id="1_0c2oi"]
 [ext_resource type="Script" path="res://assets/scripts/ui/base_upgrade.gd" id="1_qf3fd"]
-[ext_resource type="FontFile" uid="uid://bagt8u7abyky" path="res://assets/sprites/Font.png" id="2_08126"]
 [ext_resource type="Texture2D" uid="uid://d3y44u3jn38tk" path="res://assets/sprites/UI/upgrades/button_pressed.tres" id="2_ft8ot"]
 [ext_resource type="Texture2D" uid="uid://b8tj8u7gxpywp" path="res://assets/sprites/UI/upgrades/button_hover.tres" id="3_60b4i"]
 [ext_resource type="Texture2D" uid="uid://6y75e0kd7sve" path="res://assets/sprites/UI/upgrades/upgrade_pip_empty.png" id="4_1oqu0"]
 [ext_resource type="Texture2D" uid="uid://bjgnp20g38cdu" path="res://assets/sprites/UI/upgrades/upgrade_pip_full.png" id="5_prttw"]
 [ext_resource type="Texture2D" uid="uid://bmcj0bwvsmlvp" path="res://assets/sprites/UI/upgrades/menu_background.png" id="5_rq5xq"]
 [ext_resource type="AudioStream" uid="uid://bgejwl2d52tb5" path="res://assets/audio/sfx/fish sold big.wav" id="6_600js"]
+[ext_resource type="FontFile" uid="uid://bbus20fn0e8i8" path="res://assets/sprites/Font_white.png" id="6_ptju2"]
 [ext_resource type="AudioStream" uid="uid://vv4kjn88y10o" path="res://assets/audio/sfx/dave like sound.wav" id="7_dif64"]
 
 [sub_resource type="Theme" id="Theme_cq2fs"]
-default_font = ExtResource("2_08126")
+default_font = ExtResource("6_ptju2")
 
 [node name="base_upgrade" type="TextureButton"]
 anchors_preset = 15

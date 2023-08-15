@@ -1,7 +1,11 @@
 extends Node2D
 
 # ====== Movement Constants ====== #
-var BOAT_MAX_SPEED:float = 30
+var BOAT_MAX_SPEED:float = 30:
+	set(new_max):
+		BOAT_MAX_SPEED = new_max
+		BOAT_ACCEL = BOAT_MAX_SPEED/1
+		WATER_DECEL = BOAT_MAX_SPEED/1.5
 var BOAT_ACCEL:float = BOAT_MAX_SPEED/1
 var WATER_DECEL:float = BOAT_MAX_SPEED/1.5
 

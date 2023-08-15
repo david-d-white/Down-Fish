@@ -1,7 +1,7 @@
 extends Node
 
 const WAVE_TIMER_INIT = 30
-const WAVE_COOLDOWN_INIT = 16
+const WAVE_COOLDOWN_INIT = 120
 const WARNING_TIME = 15
 
 var money = 0

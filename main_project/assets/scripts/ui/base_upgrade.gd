@@ -45,9 +45,9 @@ func update_upgrade_prices():
 		text = "$" + str(prices[purchased])
 	$UpgradeInfo/upgrade_price.text = text
 	$UpgradeInfo/upgrade_price.size.x = len(text)*4
-	print("setting price position for ", $UpgradeInfo/upgrade_label.text, " to ", 64 - len(text)*4)
-	$UpgradeInfo/upgrade_price.position.y = $UpgradeInfo/upgrade_price.position.y
-	$UpgradeInfo/upgrade_price.position.x = 64 - len(text)*4
+	#print("setting price position for ", $UpgradeInfo/upgrade_label.text, " to ", 61 - len(text)*4)
+	#$UpgradeInfo/upgrade_price.position.y = $UpgradeInfo/upgrade_price.position.y
+	#$UpgradeInfo/upgrade_price.position.x = 64 - len(text)*4
 	update_node()
 	update_pips()
 
