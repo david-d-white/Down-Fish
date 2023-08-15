@@ -120,6 +120,7 @@ func _process(delta):
 	elif Input.is_action_just_pressed("decrease_camera_buffer"):
 		BUFFER_SIZE -= 1
 		print(BUFFER_SIZE)
+	BUFFER_SIZE = clamp(BUFFER_SIZE, 1, 3)
 	
 	if Input.is_action_pressed("esc"):
 		$pause_bg.visible = true

@@ -1,6 +1,5 @@
 [gd_scene load_steps=17 format=3 uid="uid://c4bwe8ryn06ad"]
 
-[ext_resource type="FontFile" uid="uid://bagt8u7abyky" path="res://assets/sprites/Font.png" id="1_dlw5a"]
 [ext_resource type="Script" path="res://assets/scripts/ui/upgrades.gd" id="1_lqhpx"]
 [ext_resource type="Texture2D" uid="uid://bmcj0bwvsmlvp" path="res://assets/sprites/UI/upgrades/menu_background.png" id="2_3fc14"]
 [ext_resource type="PackedScene" uid="uid://cfvu7d84r1wes" path="res://assets/scenes/base_upgrade.tscn" id="2_m2os7"]
@@ -12,9 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://c81xt7be3vmqm" path="res://assets/sprites/UI/upgrades/hook_speed_upgrade.tres" id="8_mvkeg"]
 [ext_resource type="Texture2D" uid="uid://cq7rtvriktxqo" path="res://assets/sprites/UI/upgrades/hook_capacity_upgrade.tres" id="9_cespr"]
 [ext_resource type="Texture2D" uid="uid://bulxxphy7503p" path="res://assets/sprites/UI/upgrades/hook_strength_upgrade.tres" id="10_dptr6"]
+[ext_resource type="FontFile" uid="uid://bbus20fn0e8i8" path="res://assets/sprites/Font_white.png" id="12_qlv8f"]
 
 [sub_resource type="Theme" id="Theme_w3utd"]
-default_font = ExtResource("1_dlw5a")
+default_font = ExtResource("12_qlv8f")
 
 [sub_resource type="Animation" id="Animation_5bvc6"]
 resource_name = "menu_close"
