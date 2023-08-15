@@ -67,8 +67,10 @@ func _process(delta):
 	
 	if $hook_sprite.position.y > HOOK_LIM:
 		$hook_sprite.show()
+		$Slingshot.hide()
 	else:
 		$hook_sprite.hide()
+		$Slingshot.show()
 		var new_money = 0
 		for fish in caught_fish:
 			new_money += fish.call("get_value")
@@ -100,4 +102,3 @@ func change_depth_effect():
 	var effect:AudioEffectLowPassFilter = AudioServer.get_bus_effect(index, 0)
 	effect.cutoff_hz = 233716/($hook_sprite.global_position.y+175)-418
 	print(effect.cutoff_hz)
-	

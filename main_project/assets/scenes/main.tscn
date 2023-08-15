@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfjjv4863en5j"]
+[gd_scene load_steps=12 format=3 uid="uid://dfjjv4863en5j"]
 
 [ext_resource type="Texture2D" uid="uid://cjjnx2se45sg8" path="res://assets/sprites/Map.jpg" id="1_e0dwt"]
 [ext_resource type="Script" path="res://assets/scripts/camera/main_camera.gd" id="2_0l0nl"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://d1i1d6wru0mcd" path="res://assets/scenes/fish_spawner.tscn" id="6_wfr3f"]
 [ext_resource type="PackedScene" uid="uid://c4bwe8ryn06ad" path="res://assets/scenes/upgrades.tscn" id="7_f0f2r"]
 [ext_resource type="PackedScene" uid="uid://csfjpgpia6huo" path="res://assets/scenes/flying_enemy.tscn" id="8_x6kvv"]
+[ext_resource type="AudioStream" uid="uid://d10m2a2rglj4e" path="res://assets/audio/sfx/Alertx5.wav" id="10_341h7"]
+[ext_resource type="Texture2D" uid="uid://cfj7x23dokny8" path="res://assets/sprites/entities/Warning.png" id="10_ahyrt"]
 
 [node name="main" type="Node2D"]
 
@@ -55,6 +57,7 @@ offset_bottom = 37.0
 position = Vector2(-261, -74)
 
 [node name="Slingshot" parent="boat" instance=ExtResource("5_wxsbc")]
+visible = false
 position = Vector2(-1, -6)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("boat")]
@@ -65,6 +68,11 @@ SIZE_WINDOWS = Vector2(12, 6)
 SOUTH_LIM = 128
 EAST_LIM = 256
 boat = NodePath("../boat")
+
+[node name="Warning" type="Sprite2D" parent="Camera2D"]
+visible = false
+position = Vector2(-2.08165e-12, -2.08165e-12)
+texture = ExtResource("10_ahyrt")
 
 [node name="pause_bg" type="ColorRect" parent="Camera2D"]
 visible = false
@@ -96,5 +104,12 @@ offset_top = 25.0
 offset_right = 30.0
 offset_bottom = 40.0
 color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[node name="WarningSound" type="AudioStreamPlayer" parent="Camera2D"]
+stream = ExtResource("10_341h7")
+volume_db = -12.855
+pitch_scale = 0.9
+
+[connection signal="finished" from="Camera2D/WarningSound" to="Camera2D" method="_on_audio_stream_player_finished"]
 
 [editable path="Island/enemy_spawner"]

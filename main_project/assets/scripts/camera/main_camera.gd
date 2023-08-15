@@ -87,6 +87,7 @@ func _ready():
 	RenderingServer.connect("frame_pre_draw", self._update_camera_pos)
 	RenderingServer.connect("frame_post_draw", self._update_window_pos)
 	boat.connect("hook_move_notify", self._update_camera_offset)
+	Globals.wave_warning.connect(self._display_warning)
 
 func _draw():
 	if not (Engine.is_editor_hint() and show_hint):
@@ -164,3 +165,11 @@ func _update_window_pos():
 		window_positions.push_back(play_area.get_center() + Vector2i(camera_disp*pan_scale) - window_size/2)
 		while window_positions.size() > BUFFER_SIZE:
 			DisplayServer.window_set_position(window_positions.pop_front())
+
+func _display_warning():
+		$Warning.visible = true
+		$WarningSound.play()
+
+func _on_audio_stream_player_finished():
+	$Warning.visible = false
+	$WarningSound.stop()

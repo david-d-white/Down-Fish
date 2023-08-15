@@ -15,8 +15,6 @@
 		purchased = clamp(new_purchased_count, 0, len(prices))
 		update_upgrade_prices()
 
-@onready var global_vars = get_node("/root/GlobalVars")
-
 @export var values:PackedFloat64Array:
 	set(new_values):
 		values = new_values
@@ -60,10 +58,10 @@ func update_node():
 		property_update.emit(connected_node_name, connected_property, values[purchased])
 
 func _on_upgrade_buy_pressed():
-	var money = global_vars.money
+	var money = Globals.money
 	if purchased < len(prices) and money >= prices[purchased]:
 		$purchase.play()
-		global_vars.money -= prices[purchased]
+		Globals.money -= prices[purchased]
 		purchased += 1
 		update_upgrade_prices()
 	else:

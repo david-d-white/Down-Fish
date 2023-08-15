@@ -81,14 +81,17 @@ default_color = Color(0.376471, 0.376471, 0.376471, 1)
 
 [node name="fish_pickup" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("5_43hix")
+volume_db = -20.0
 bus = &"fishing_phase"
 
 [node name="fish_sold" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("6_pyn3s")
+volume_db = -10.0
 bus = &"fishing_phase"
 
 [node name="big_fish_sold" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("7_r5h3y")
+volume_db = -10.0
 bus = &"fishing_phase"
 
 [connection signal="body_entered" from="hook_sprite/Area2D" to="." method="_on_area_2d_body_entered"]

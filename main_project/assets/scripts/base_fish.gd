@@ -1,7 +1,6 @@
 extends CharacterBody2D
-const ATTR_DICT = {"manta_ray": [4, 26, 5, 10, 3, 2,true], "pufferfish": [3, 12, 3, 5, 2, 1, false], "small_fish": [3, 12, 0, 1, 1, 1, false], "eel": [2, 25, 15, 7, 2, 3, true], "angler": [5, 13, 25, 10, 5, 2, false]}
+var ATTR_DICT = Globals.FISH_DICT
 const MAX_TARGET_TIME = 3
-var value = 1 #
 var SPEED = 0.5
 var current_target:Vector2
 var target_time = 0
@@ -15,10 +14,10 @@ var hooked = false
 var hook_node = null
 
 #ATTR_DICT defines the behaviours of each individual fish. fish arrays are of the form:
-# [collision_radius, collision_width, depth_weight, base_value, base_weight, base_speed, scared_of_hook]
+# [collision_radius, collision_width, min_depth, spawn_weight, base_value, base_weight, base_speed, scared_of_hook]
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	choose_fish_type()
+	#choose_fish_type()
 	current_target = see()
 
 
@@ -32,13 +31,14 @@ func _physics_process(delta):
 	#print_debug("target:", self.current_target, "position:", self.position)
 
 
-func initialize(position:Vector2, spawn_size:Rect2, spawn_origin:Vector2, depth=1):
+func initialize(position:Vector2, spawn_size:Rect2, spawn_origin:Vector2, depth=1, fish_name=""):
 	self.position = position
 	self.max_y = -spawn_size.size.y + spawn_origin.y
 	self.min_y = spawn_origin.y
 	self.max_x = spawn_size.size.x + spawn_origin.x
 	self.min_x = spawn_origin.x
-	self.depth = 1
+	self.depth = depth
+	self.choose_fish_type(fish_name)
 
 
 func move(target_value, speed):
@@ -46,7 +46,7 @@ func move(target_value, speed):
 		global_position = hook_node.global_position + Vector2(0, ATTR_DICT[fish_type][1]/2)
 		return
 	var direction = position.direction_to(target_value)
-	velocity = direction*SPEED*32*ATTR_DICT[fish_type][5] * depth
+	velocity = direction*SPEED*32*ATTR_DICT[fish_type][6] * depth
 	if direction.x < 0:
 		$AnimatedSprite2D.flip_h = true
 		$Area2D/CollisionPolygon2D.rotation = PI
@@ -73,10 +73,10 @@ func caught(hook: Sprite2D):
 
 
 func get_weight():
-	return ATTR_DICT[fish_type][4]
+	return ATTR_DICT[fish_type][5]
 
 func get_value():
-	return ATTR_DICT[fish_type][3]*(1+(depth-1)/5)
+	return ATTR_DICT[fish_type][4]*(depth)
 
 func die():
 	get_tree().call_group("fish_spawner", "free_fish", depth)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://culj08yoshoj1"]
+[gd_scene load_steps=32 format=3 uid="uid://culj08yoshoj1"]
 
 [ext_resource type="Texture2D" uid="uid://tlv2fmdypfq4" path="res://assets/sprites/entities/base_fish.png" id="1_bpewc"]
 [ext_resource type="Script" path="res://assets/scripts/base_fish.gd" id="1_bvdan"]
@@ -6,6 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://52swh2him4uf" path="res://assets/sprites/entities/Puffer.png" id="2_hqirr"]
 [ext_resource type="Texture2D" uid="uid://pnov2nqu8n51" path="res://assets/sprites/entities/Manta.png" id="2_s2ygv"]
 [ext_resource type="Texture2D" uid="uid://n2w3aoxfg0cn" path="res://assets/sprites/entities/Angler.png" id="2_tukt5"]
+[ext_resource type="Texture2D" uid="uid://dabdjjh0i5vwy" path="res://assets/sprites/entities/Clownfish.png" id="3_aqjt2"]
+[ext_resource type="Texture2D" uid="uid://xu2dkw63rjcn" path="res://assets/sprites/entities/maddifish_1.png" id="4_k8bif"]
+[ext_resource type="Texture2D" uid="uid://36yum0ex718w" path="res://assets/sprites/entities/GreyFish.png" id="4_o408v"]
+[ext_resource type="Texture2D" uid="uid://b2l4xv6oqtafc" path="res://assets/sprites/entities/Jellyfish.png" id="5_iut5i"]
+[ext_resource type="Texture2D" uid="uid://b38sm2qyww6xp" path="res://assets/sprites/entities/maddifish_2.png" id="5_t7uje"]
+[ext_resource type="Texture2D" uid="uid://cm56pynausk5l" path="res://assets/sprites/entities/MedFish.png" id="10_uj15s"]
+[ext_resource type="Texture2D" uid="uid://cabw7muomwtsd" path="res://assets/sprites/entities/Sardine.png" id="12_dcv5v"]
+[ext_resource type="Texture2D" uid="uid://c72btiino0025" path="res://assets/sprites/entities/TangFish.png" id="14_tw8nr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iq041"]
 atlas = ExtResource("2_tukt5")
@@ -18,6 +26,30 @@ region = Rect2(0, 0, 27, 5)
 [sub_resource type="AtlasTexture" id="AtlasTexture_bn7ug"]
 atlas = ExtResource("2_ake05")
 region = Rect2(27, 0, 27, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8mrb"]
+atlas = ExtResource("5_iut5i")
+region = Rect2(0, 0, 14, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj1sr"]
+atlas = ExtResource("5_iut5i")
+region = Rect2(14, 0, 14, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6kno"]
+atlas = ExtResource("4_k8bif")
+region = Rect2(0, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al4aw"]
+atlas = ExtResource("4_k8bif")
+region = Rect2(8, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldopf"]
+atlas = ExtResource("5_t7uje")
+region = Rect2(0, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvrvn"]
+atlas = ExtResource("5_t7uje")
+region = Rect2(8, 0, 8, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v2kph"]
 atlas = ExtResource("2_s2ygv")
@@ -51,6 +83,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"angler",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aqjt2")
+}],
+"loop": true,
+"name": &"clownfish",
 "speed": 5.0
 }, {
 "frames": [{
@@ -62,7 +102,48 @@ animations = [{
 }],
 "loop": true,
 "name": &"eel",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_o408v")
+}],
+"loop": true,
+"name": &"greyfish",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8mrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj1sr")
+}],
+"loop": true,
+"name": &"jellyfish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_x6kno")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_al4aw")
+}],
+"loop": true,
+"name": &"maddifish_1",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_ldopf")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_gvrvn")
+}],
+"loop": true,
+"name": &"maddifish_2",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 6.0,
@@ -73,6 +154,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"manta_ray",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_uj15s")
+}],
+"loop": true,
+"name": &"medfish",
 "speed": 5.0
 }, {
 "frames": [{
@@ -87,6 +176,14 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_dcv5v")
+}],
+"loop": true,
+"name": &"sardine",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 6.0,
 "texture": SubResource("AtlasTexture_n482w")
 }, {
@@ -96,21 +193,29 @@ animations = [{
 "loop": true,
 "name": &"small_fish",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_tw8nr")
+}],
+"loop": true,
+"name": &"tangfish",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uke57"]
 resource_local_to_scene = true
 radius = 5.0
-height = 13.0
+height = 23.0
 
 [node name="base_fish" type="CharacterBody2D"]
 position = Vector2(6, 3)
+collision_mask = 0
 script = ExtResource("1_bvdan")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ou8so")
-animation = &"small_fish"
-autoplay = "manta_ray"
+animation = &"tangfish"
 offset = Vector2(0.5, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

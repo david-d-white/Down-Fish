@@ -9,11 +9,11 @@ var damage = 5
 var projectiles = 1
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if not visible:
+		return
 	var pos_2 = get_global_mouse_position() - global_position
 	var dir = pos_2 - $Line2D.points[0]
 	dir = dir.normalized()

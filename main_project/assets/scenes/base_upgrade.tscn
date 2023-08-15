@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://6y75e0kd7sve" path="res://assets/sprites/UI/upgrades/upgrade_pip_empty.png" id="4_1oqu0"]
 [ext_resource type="Texture2D" uid="uid://bjgnp20g38cdu" path="res://assets/sprites/UI/upgrades/upgrade_pip_full.png" id="5_prttw"]
 [ext_resource type="AudioStream" uid="uid://bgejwl2d52tb5" path="res://assets/audio/sfx/fish sold big.wav" id="6_600js"]
-[ext_resource type="AudioStream" uid="uid://vv4kjn88y10o" path="res://assets/audio/sfx/dave like sound.wav" id="7_dif64"]
+[ext_resource type="AudioStream" uid="uid://dtvx7wb3ci8li" path="res://assets/audio/sfx/Fail.wav" id="7_pfa8b"]
 
 [sub_resource type="Theme" id="Theme_cq2fs"]
 default_font = ExtResource("2_08126")
@@ -75,9 +75,11 @@ stretch_mode = 1
 
 [node name="purchase" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_600js")
+volume_db = -25.0
 
 [node name="failed_purchase" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_dif64")
-pitch_scale = 2.0
+stream = ExtResource("7_pfa8b")
+volume_db = -20.0
+pitch_scale = 0.5
 
 [connection signal="pressed" from="upgrade_buy" to="." method="_on_upgrade_buy_pressed"]

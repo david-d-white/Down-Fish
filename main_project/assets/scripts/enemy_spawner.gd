@@ -19,7 +19,7 @@ func _random_spawn() -> Vector2:
 func _on_game_state_changed(state):
 	match state:
 		Globals.GAME_STATE.WAVE:
-			$Spawn_timer.start()
+			$Spawn_timer.start(SPAWN_TIME/min(10, 1+floor(Globals.waves/3)))
 		_:
 			$Spawn_timer.stop()
 	
