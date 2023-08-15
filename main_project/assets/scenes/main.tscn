@@ -48,10 +48,10 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="upgrades" parent="Island/enemy_spawner/warning_area" index="1" instance=ExtResource("7_f0f2r")]
 visible = false
-offset_left = -65.0
-offset_top = -92.0
-offset_right = 190.0
-offset_bottom = 37.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 
 [node name="boat" parent="." instance=ExtResource("3_w5t17")]
 position = Vector2(-261, -74)

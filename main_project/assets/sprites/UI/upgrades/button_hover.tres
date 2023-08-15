@@ -1,7 +1,7 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bg806c1tbyq5x"]
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b8tj8u7gxpywp"]
 
-[ext_resource type="Texture2D" uid="uid://d4k1ku73ots80" path="res://assets/sprites/UI/upgrades/menu_icons.png" id="1_0mpwn"]
+[ext_resource type="Texture2D" uid="uid://jboyru4wtxjc" path="res://assets/sprites/UI/upgrades/menu_buttons.png" id="1_ir4tb"]
 
 [resource]
-atlas = ExtResource("1_0mpwn")
-region = Rect2(24, 24, 12, 12)
+atlas = ExtResource("1_ir4tb")
+region = Rect2(12, 0, 12, 12)

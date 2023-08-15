@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqgvv4aj86joc"]
+[gd_scene load_steps=6 format=3 uid="uid://ceblxs1l5vau8"]
 
 [ext_resource type="Script" path="res://assets/scripts/globals.gd" id="1_f4gri"]
 [ext_resource type="AudioStream" uid="uid://bvi12n5x0j1ib" path="res://assets/audio/music/Drunken Sailor.mp3" id="2_j680w"]

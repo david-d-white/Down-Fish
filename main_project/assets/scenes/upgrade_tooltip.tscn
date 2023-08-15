@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci5nbyft33fsc"]
+
+[ext_resource type="FontFile" uid="uid://bagt8u7abyky" path="res://assets/sprites/Font.png" id="1_6eauc"]
+[ext_resource type="Texture2D" uid="uid://6y75e0kd7sve" path="res://assets/sprites/UI/upgrades/upgrade_pip_empty.png" id="2_e7i3o"]
+[ext_resource type="Texture2D" uid="uid://bjgnp20g38cdu" path="res://assets/sprites/UI/upgrades/upgrade_pip_full.png" id="3_dsy1y"]
+
+[sub_resource type="Theme" id="Theme_iyonl"]
+default_font = ExtResource("1_6eauc")
+
+[node name="Upgrade_Tooltip" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="upgrade_label" type="RichTextLabel" parent="."]
+layout_mode = 1
+offset_top = 5.0
+offset_right = 35.0
+offset_bottom = 10.0
+theme = SubResource("Theme_iyonl")
+text = "Boat:"
+
+[node name="upgrade_price" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_top = 5.0
+offset_bottom = 10.0
+grow_horizontal = 0
+theme = SubResource("Theme_iyonl")
+text = "$23"
+
+[node name="upgrade_pips" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="empty_pips" type="TextureRect" parent="upgrade_pips"]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.5
+offset_right = 19.5
+offset_bottom = 4.0
+grow_horizontal = 2
+texture = ExtResource("2_e7i3o")
+stretch_mode = 1
+
+[node name="filled_pips" type="TextureRect" parent="upgrade_pips/empty_pips"]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.5
+offset_right = 19.5
+offset_bottom = 4.0
+grow_horizontal = 2
+texture = ExtResource("3_dsy1y")
+stretch_mode = 1

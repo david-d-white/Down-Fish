@@ -1,71 +1,81 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfvu7d84r1wes"]
+[gd_scene load_steps=12 format=3 uid="uid://cfvu7d84r1wes"]
 
+[ext_resource type="Texture2D" uid="uid://cpywxg14h0mcl" path="res://assets/sprites/UI/upgrades/button_normal.tres" id="1_0c2oi"]
 [ext_resource type="Script" path="res://assets/scripts/ui/base_upgrade.gd" id="1_qf3fd"]
 [ext_resource type="FontFile" uid="uid://bagt8u7abyky" path="res://assets/sprites/Font.png" id="2_08126"]
-[ext_resource type="FontFile" uid="uid://bbus20fn0e8i8" path="res://assets/sprites/Font_white.png" id="3_12s07"]
+[ext_resource type="Texture2D" uid="uid://d3y44u3jn38tk" path="res://assets/sprites/UI/upgrades/button_pressed.tres" id="2_ft8ot"]
+[ext_resource type="Texture2D" uid="uid://b8tj8u7gxpywp" path="res://assets/sprites/UI/upgrades/button_hover.tres" id="3_60b4i"]
 [ext_resource type="Texture2D" uid="uid://6y75e0kd7sve" path="res://assets/sprites/UI/upgrades/upgrade_pip_empty.png" id="4_1oqu0"]
 [ext_resource type="Texture2D" uid="uid://bjgnp20g38cdu" path="res://assets/sprites/UI/upgrades/upgrade_pip_full.png" id="5_prttw"]
+[ext_resource type="Texture2D" uid="uid://bmcj0bwvsmlvp" path="res://assets/sprites/UI/upgrades/menu_background.png" id="5_rq5xq"]
 [ext_resource type="AudioStream" uid="uid://bgejwl2d52tb5" path="res://assets/audio/sfx/fish sold big.wav" id="6_600js"]
-[ext_resource type="AudioStream" uid="uid://dtvx7wb3ci8li" path="res://assets/audio/sfx/Fail.wav" id="7_pfa8b"]
+[ext_resource type="AudioStream" uid="uid://vv4kjn88y10o" path="res://assets/audio/sfx/dave like sound.wav" id="7_dif64"]
 
 [sub_resource type="Theme" id="Theme_cq2fs"]
 default_font = ExtResource("2_08126")
 
-[sub_resource type="Theme" id="Theme_qbbky"]
-
-[node name="base_upgrade" type="Control"]
-layout_mode = 3
+[node name="base_upgrade" type="TextureButton"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -216.0
-offset_bottom = -104.0
+offset_right = -52.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
+texture_normal = ExtResource("1_0c2oi")
+texture_pressed = ExtResource("2_ft8ot")
+texture_hover = ExtResource("3_60b4i")
 script = ExtResource("1_qf3fd")
 
-[node name="upgrade_label" type="RichTextLabel" parent="."]
+[node name="UpgradeInfo" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -24.0
+offset_top = -6.0
+offset_right = 24.0
+offset_bottom = 6.0
+texture = ExtResource("5_rq5xq")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="upgrade_label" type="RichTextLabel" parent="UpgradeInfo"]
 layout_mode = 0
 offset_left = 1.0
+offset_top = 2.0
 offset_right = 21.0
-offset_bottom = 5.0
+offset_bottom = 7.0
 theme = SubResource("Theme_cq2fs")
 text = "Boat:"
 
-[node name="upgrade_price" type="RichTextLabel" parent="."]
+[node name="upgrade_price" type="RichTextLabel" parent="UpgradeInfo"]
 layout_mode = 0
-offset_left = 21.0
-offset_right = 37.0
-offset_bottom = 5.0
+offset_left = 34.0
+offset_top = 2.0
+offset_right = 50.0
+offset_bottom = 7.0
 theme = SubResource("Theme_cq2fs")
 text = "$23"
 
-[node name="upgrade_buy" type="Button" parent="."]
-layout_mode = 0
-offset_top = 11.0
-offset_right = 20.0
-offset_bottom = 24.0
-theme = SubResource("Theme_qbbky")
-theme_override_fonts/font = ExtResource("3_12s07")
-text = "Buy"
-
-[node name="upgrade_pips" type="Control" parent="."]
+[node name="upgrade_pips" type="Control" parent="UpgradeInfo"]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 6.0
+offset_top = -7.0
 offset_right = 41.0
-offset_bottom = 10.0
+offset_bottom = -3.0
 
-[node name="empty_pips" type="TextureRect" parent="upgrade_pips"]
+[node name="empty_pips" type="TextureRect" parent="UpgradeInfo/upgrade_pips"]
 texture_repeat = 2
 layout_mode = 0
-offset_left = 1.0
-offset_right = 40.0
-offset_bottom = 4.0
+offset_left = 5.0
+offset_top = 14.0
+offset_right = 44.0
+offset_bottom = 18.0
 texture = ExtResource("4_1oqu0")
 stretch_mode = 1
 
-[node name="filled_pips" type="TextureRect" parent="upgrade_pips/empty_pips"]
+[node name="filled_pips" type="TextureRect" parent="UpgradeInfo/upgrade_pips/empty_pips"]
 texture_repeat = 2
 layout_mode = 0
 offset_right = 39.0
@@ -75,11 +85,11 @@ stretch_mode = 1
 
 [node name="purchase" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_600js")
-volume_db = -25.0
 
 [node name="failed_purchase" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_pfa8b")
-volume_db = -20.0
-pitch_scale = 0.5
+stream = ExtResource("7_dif64")
+pitch_scale = 2.0
 
-[connection signal="pressed" from="upgrade_buy" to="." method="_on_upgrade_buy_pressed"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
